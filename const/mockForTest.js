@@ -1,5 +1,5 @@
 const products = [
-
+  [
     {
       id: 1,
       name: 'Martelo de Thor',
@@ -15,7 +15,7 @@ const products = [
       name: 'Escudo do Capitão América',
       quantity: 30,
     },
-
+  ],
 ];
 
 module.exports = {

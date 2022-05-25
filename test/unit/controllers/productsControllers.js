@@ -43,11 +43,11 @@ describe('Check controllers: where function is getAllProducts', () => {
       ProductsServices.getAllProducts.restore();
     });
     it('the method "status" is called with code 200', async () => {
-      await ProductsControllers.getAllProducts(req, res);
+      await ProductsControllers.getAllProducts(request, response);
       expect(response.status.calledWith(200)).to.be.true;
     });
     it('the method "json" should return an array', async () => {
-      await ProductsControllers.getAllProducts(req, res);
+      await ProductsControllers.getAllProducts(request, response);
       expect(response.json.calledWith(sinon.match.array)).to.be.true;
     });
   })

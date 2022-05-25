@@ -23,11 +23,11 @@ describe('Check Models: get all products from db', () => {
     });
     it('should be an object', async () => {
       const [response] = await ProductsModels.getAllProducts();
-      expect(response).to.be.an('object');
+      expect(response[0]).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
       const [response] = await ProductsModels.getAllProducts();
-      expect(response).to.include.all.keys('id', 'name', 'quantity');
+      expect(response[0]).to.include.all.keys('id', 'name', 'quantity');
     })
   })
 

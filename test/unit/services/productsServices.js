@@ -22,11 +22,11 @@ describe('Check Services: get all products from db', () => {
       expect(response).to.not.be.empty;
     });
     it('should be an object', async () => {
-      const response = await ProductsServices.getAllProducts();
+      const [response] = await ProductsServices.getAllProducts();
       expect(response).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
-      const response = await ProductsServices.getAllProducts();
+      const [response] = await ProductsServices.getAllProducts();
       expect(response).to.include.all.keys('id', 'name', 'quantity');
     })
   })
