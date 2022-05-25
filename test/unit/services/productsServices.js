@@ -4,7 +4,7 @@ const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products } = require('../../../const/mockForTest');
 
-describe('Get all products from db', () => {
+describe('Check Services: get all products from db', () => {
   describe('when there are products in the database', () => {
     before(() => {
       sinon.stub(ProductsModels, 'getAllProducts').resolves(products);
@@ -22,11 +22,11 @@ describe('Get all products from db', () => {
       expect(response).to.not.be.empty;
     });
     it('should be an object', async () => {
-      const [response] = await ProductsServices.getAllProducts();
+      const response = await ProductsServices.getAllProducts();
       expect(response).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
-      const [response] = await ProductsServices.getAllProducts();
+      const response = await ProductsServices.getAllProducts();
       expect(response).to.include.all.keys('id', 'name', 'quantity');
     })
   })
@@ -39,7 +39,7 @@ describe('Get all products from db', () => {
       ProductsModels.getAllProducts.restore();
     })
     it('should return an empty array', async () => {
-      const [response] = await ProductsServices.getAllProducts();
+      const response = await ProductsServices.getAllProducts();
       expect(response).to.be.empty;
       expect(response).to.be.an('array');
     })
