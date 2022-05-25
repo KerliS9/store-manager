@@ -38,7 +38,7 @@ describe('Get all products from db', () => {
     after(() => {
       ProductsModels.getAllProducts.restore();
     })
-    it('should return an empty array', () => {
+    it('should return an empty array', async () => {
       const [response] = await ProductsServices.getAllProducts();
       expect(response).to.be.empty;
       expect(response).to.be.an('array');
