@@ -7,6 +7,7 @@ require('dotenv').config();
 app.use(express.json());
 
 app.use('/products', routes);
+app.use('/sales', routes);
 
 app.use(errorHandler);
 
