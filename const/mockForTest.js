@@ -18,6 +18,20 @@ const products = [
   ],
 ];
 
+const sales = [
+  [
+    {
+      id: 1,
+      date: '2022-05-26 20:49:28',
+    },
+    {
+      id: 2,
+      date: '2022-05-26 20:49:28',
+    },
+  ],
+];
+
 module.exports = {
   products,
+  sales,
 };
