@@ -7,10 +7,10 @@ const getAllSales = async (_req, res) => {
 
 const getSaleById = async (req, res) => {
   const { id } = req.params;
-  const product = await SalesServices.getSaleById(id);
-  // console.log('controller', product);
-  if (!product) return res.status(404).json({ message: 'Sale not found' });
-  return res.status(200).json(product);
+  const sale = await SalesServices.getSaleById(id);
+  // console.log('controller', sale);
+  if (!sale) return res.status(404).json({ message: 'Sale not found' });
+  return res.status(200).json(sale);
 };
 
 module.exports = {

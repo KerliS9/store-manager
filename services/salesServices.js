@@ -6,10 +6,10 @@ const getAllSales = async () => {
 };
 
 const getSaleById = async (id) => {
-  const product = await SalesModels.getSaleById(id);
-  // console.log('camada service', product);
-  if (!product) return false;
-  return product;
+  const sale = await SalesModels.getSaleById(id);
+  // console.log('camada service', sale);
+  if (!sale) return false;
+  return sale;
 };
 
 module.exports = {
