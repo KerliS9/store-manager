@@ -25,9 +25,9 @@ describe('Check Services Sales: get all sales from database', () => {
       const [response] = await SalesServices.getAllSales();
       expect(response[0]).to.be.an('object');
     });
-    it('the object should have the keys id, date', async () => {
+    it('the object should have the keys saleId, date, productId, quantity', async () => {
       const [response] = await SalesServices.getAllSales();
-      expect(response[0]).to.include.all.keys('id', 'date');
+      expect(response[0]).to.include.all.keys('saleId', 'date', 'productId', 'quantity');
     })
   })
 
