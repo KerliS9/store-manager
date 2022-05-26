@@ -35,9 +35,11 @@ describe('Check Services: get product by id from database', () => {
     after(() => {
       ProductsModels.getProductById.restore();
     })
-    it('should return null', async () => {
+    it('should return false', async () => {
       const [response] = await ProductsServices.getProductById(1);
-      expect(response).to.be.null;
+      // console.log('teste product ', response);
+      expect(response).to.be.empty;
+      expect(response).to.be.false;
     })
   })
 })

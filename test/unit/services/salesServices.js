@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const SalesModels = require('../../../models/salesModels');
-const ProductsServices = require('../../../services/productsServices');
+const SalesServices = require('../../../services/salesServices');
 const { sales } = require('../../../const/mockForTest');
 
 describe('Check Services Sales: get all sales from database', () => {
@@ -14,19 +14,19 @@ describe('Check Services Sales: get all sales from database', () => {
     });
 
     it('should return an array', async () => {
-      const [response] = await ProductsServices.getAllSales();
+      const [response] = await SalesServices.getAllSales();
       expect(response).to.be.an('array');
     });
     it('array should not to be empty', async () => {
-      const [response] = await ProductsServices.getAllSales();
+      const [response] = await SalesServices.getAllSales();
       expect(response).to.not.be.empty;
     });
     it('should be an object', async () => {
-      const [response] = await ProductsServices.getAllSales();
+      const [response] = await SalesServices.getAllSales();
       expect(response[0]).to.be.an('object');
     });
     it('the object should have the keys id, date', async () => {
-      const [response] = await ProductsServices.getAllSales();
+      const [response] = await SalesServices.getAllSales();
       expect(response[0]).to.include.all.keys('id', 'date');
     })
   })
@@ -39,7 +39,7 @@ describe('Check Services Sales: get all sales from database', () => {
       SalesModels.getAllSales.restore();
     })
     it('should return an empty array', async () => {
-      const response = await ProductsServices.getAllSales();
+      const [response] = await SalesServices.getAllSales();
       expect(response).to.be.empty;
       expect(response).to.be.an('array');
     })
