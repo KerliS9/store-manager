@@ -15,6 +15,7 @@ describe('Check Models: get product by id from database', () => {
 
     it('should be an object', async () => {
       const response = await ProductsModels.getProductById(1);
+      console.log('teste model', response);
       expect(response[0]).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
