@@ -7,7 +7,6 @@ const getAllProducts = async (_req, res) => {
 
 const getProductById = async (req, res) => {
   const { id } = req.params;
-  // console.log('controller ', id);
   const product = await ProductsServices.getProductById(id);
   // console.log('controller', product);
   if (!product) return res.status(404).json({ message: 'Product not found' });

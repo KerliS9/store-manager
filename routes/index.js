@@ -14,6 +14,7 @@ productsRoutes.get('/', ProductsControllers.getAllProducts);
 productsRoutes.get('/:id', ProductsControllers.getProductById);
 
 salesRoutes.get('/', SalesControllers.getAllSales);
+salesRoutes.get('/:id', SalesControllers.getSaleById);
 
 module.exports = {
   productsRoutes,
