@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const SalesModels = require('../../../models/salesModels');
-const SalesService = require('../../../services/productsServices');
+const SalesService = require('../../../services/salesServices');
 const { sales } = require('../../../const/mockForTest');
 
 describe('Check Services Sales: get sale by id from database', () => {

@@ -5,14 +5,14 @@ const getAllSales = async () => {
   return sales;
 };
 
-/* const getProductById = async (id) => {
-  const product = await ProductsModels.getProductById(id);
+const getSaleById = async (id) => {
+  const product = await SalesModels.getSaleById(id);
   // console.log('camada service', product);
-  if (!product) return null;
+  if (!product) return false;
   return product;
 };
- */
+
 module.exports = {
   getAllSales,
-  // getProductById,
+  getSaleById,
 };
