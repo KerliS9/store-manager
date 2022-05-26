@@ -9,5 +9,6 @@ const ProductsControllers = require('../controllers/productsControllers');
 }); */
 
 routes.get('/', ProductsControllers.getAllProducts);
+routes.get('/:id', ProductsControllers.getProductById);
 
 module.exports = routes;
