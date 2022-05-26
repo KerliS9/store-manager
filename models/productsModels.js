@@ -8,7 +8,7 @@ const getAllProducts = () => {
 const getProductById = async (id) => {
   const query = 'SELECT * FROM StoreManager.products WHERE id = ?;';
   const [product] = await connection.execute(query, [id]);
-  console.log('camada model', product[0]);
+  // console.log('camada model', product[0]);
   if (product.length === 0) return false;
   return product[0];
 };

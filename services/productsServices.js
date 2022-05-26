@@ -7,8 +7,8 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   const product = await ProductsModels.getProductById(id);
-  console.log('camada service', product);
-  if (product.length === 0) return false;
+  // console.log('camada service', product);
+  if (!product) return null;
   return product;
 };
 

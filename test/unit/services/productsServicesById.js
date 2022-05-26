@@ -14,17 +14,17 @@ describe('Check Services: get product by id from database', () => {
     });
 
     it('should be an object', async () => {
-      const response = await ProductsServices.getProductById(1);
+      const [response] = await ProductsServices.getProductById(1);
       // console.log('teste service', response);
-      expect(response).to.be.an('object');
+      expect(response[0]).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
-      const response = await ProductsServices.getProductById(1);
-      expect(response).to.include.all.keys('id', 'name', 'quantity');
+      const [response] = await ProductsServices.getProductById(1);
+      expect(response[0]).to.include.all.keys('id', 'name', 'quantity');
     });
     it('object should not to be empty', async () => {
-      const response = await ProductsServices.getProductById(1);
-      expect(response).to.not.be.empty;
+      const [response] = await ProductsServices.getProductById(1);
+      expect(response[0]).to.not.be.empty;
     });
   })
 
@@ -35,9 +35,9 @@ describe('Check Services: get product by id from database', () => {
     after(() => {
       ProductsModels.getProductById.restore();
     })
-    it('should return false', async () => {
-      const response = await ProductsServices.getProductById(1);
-      expect(response).to.be.false;
+    it('should return null', async () => {
+      const [response] = await ProductsServices.getProductById(1);
+      expect(response).to.be.null;
     })
   })
 })
