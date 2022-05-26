@@ -1,5 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
+const connection = require('../../../db/connection');
 const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products } = require('../../../const/mockForTest');
@@ -30,16 +31,15 @@ describe('Check Services: get product by id from database', () => {
 
   describe('when there is no product in the database', () => {
     before(() => {
-      sinon.stub(ProductsModels, 'getProductById').resolves([[]]);
+      sinon.stub(connection, 'execute').resolves([[]]);
     });
     after(() => {
-      ProductsModels.getProductById.restore();
+      connection.execute.restore();
     })
-    it('should return false', async () => {
-      const [response] = await ProductsServices.getProductById(1);
+    it('should return null', async () => {
+      const response = await ProductsServices.getProductById();
       // console.log('teste product ', response);
-      expect(response).to.be.empty;
-      expect(response).to.be.false;
+      expect(response).to.be.null;
     })
   })
 })

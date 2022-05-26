@@ -8,7 +8,7 @@ const getAllSales = async () => {
 const getSaleById = async (id) => {
   const sale = await SalesModels.getSaleById(id);
   // console.log('camada service', sale);
-  if (!sale) return false;
+  if (!sale) return null;
   return sale;
 };
 
