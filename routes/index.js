@@ -1,6 +1,7 @@
 const express = require('express');
 
-const routes = express.Router();
+const productsRoutes = express.Router();
+const salesRoutes = express.Router();
 
 const ProductsControllers = require('../controllers/productsControllers');
 const SalesControllers = require('../controllers/salesControllers');
@@ -9,9 +10,12 @@ const SalesControllers = require('../controllers/salesControllers');
   return res.status(200).json('rota de products');
 }); */
 
-routes.get('/', ProductsControllers.getAllProducts);
-routes.get('/:id', ProductsControllers.getProductById);
+productsRoutes.get('/', ProductsControllers.getAllProducts);
+productsRoutes.get('/:id', ProductsControllers.getProductById);
 
-routes.get('/', SalesControllers.getAllSales);
+salesRoutes.get('/', SalesControllers.getAllSales);
 
-module.exports = routes;
+module.exports = {
+  productsRoutes,
+  salesRoutes,
+};

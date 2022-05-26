@@ -1,13 +1,13 @@
 const express = require('express');
 const app = require('./app');
 const { errorHandler } = require('./middlewares/errorHandler');
-const routes = require('./routes');
+const { productsRoutes, salesRoutes } = require('./routes');
 require('dotenv').config();
 
 app.use(express.json());
 
-app.use('/products', routes);
-app.use('/sales', routes);
+app.use('/products', productsRoutes);
+app.use('/sales', salesRoutes);
 
 app.use(errorHandler);
 
