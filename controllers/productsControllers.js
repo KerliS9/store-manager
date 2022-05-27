@@ -25,9 +25,9 @@ const addNewProduct = async (req, res, next) => {
 
 const updateProductById = async (req, res, next) => {
   const { id } = req.params;
-  console.log('camada controllers id: ', id);
+  // console.log('camada controllers id: ', id);
   const { name, quantity } = req.body;
-  console.log('camada controllers name, quantity: ', name, quantity);
+  // console.log('camada controllers name, quantity: ', name, quantity);
   const { statusCode, message, productUpdated } = await ProductsServices.updateProductById({
     id, name, quantity,
   });
