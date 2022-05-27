@@ -18,12 +18,23 @@ FROM StoreManager.sales_products AS SP
     WHERE SP.sale_id = ?
     ORDER BY SP.sale_id, SP.product_id;`;
   const [sale] = await connection.execute(query, [id]);
-  // console.log('camada model', sale[0]);
   if (sale.length === 0) return false;
   return sale;
+};
+const addNewSale = async ({ productId, quantity }) => {
+  const querySale = 'INSERT INTO StoreManager.sales(date) VALUES(NOW());';
+  console.log('camada model Sales', querySale);
+  const query = `INSERT INTO StoreManager.sales_products(sale_id, product_id, quantity)
+  VALUES(last_insert_id(), ?, ?);`;
+  const sale = await connection.execute(querySale);
+  console.log('camada model Sales-Products:', sale);
+  const [{ insertId }] = await connection.execute(query, [productId, quantity]);
+  console.log('retorno das querys: ', { id: insertId, productId, quantity });
+  return { id: insertId, productId, quantity };
 };
 
 module.exports = {
   getAllSales,
   getSaleById,
+  addNewSale,
 };
