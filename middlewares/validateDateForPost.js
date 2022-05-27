@@ -39,7 +39,7 @@ const validateSale = (req, res, next) => {
   }).messages({
     'any.required': '{{#label}} is required',
     'string.min': '{{#label}} length must be at least 5 characters long',
-    'number.integer': '{{#label}} must be greater than or equal to 1',
+    'number.min': '{{#label}} must be greater than or equal to 1',
   });
 
   const { error } = product.validate(req.body);
