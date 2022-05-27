@@ -1,3 +1,5 @@
+const DATE = '2022-05-26T22:45:18.000Z';
+
 const products = [
   [
     {
@@ -22,19 +24,19 @@ const sales = [
   [
     {
       saleId: 1,
-      date: '2022-05-26T22:45:18.000Z',
+      date: DATE,
       productId: 1,
       quantity: 5,
     },
     {
       saleId: 1,
-      date: '2022-05-26T22:45:18.000Z',
+      date: DATE,
       productId: 2,
       quantity: 10,
     },
     {
       saleId: 2,
-      date: '2022-05-26T22:45:18.000Z',
+      date: DATE,
       productId: 3,
       quantity: 15,
     },
@@ -44,12 +46,12 @@ const sales = [
 const salesById = [
   [
     {
-      date: '2022-05-26T22:45:18.000Z',
+      date: DATE,
       productId: 1,
       quantity: 5,
     },
     {
-      date: '2022-05-26T22:45:18.000Z',
+      date: DATE,
       productId: 2,
       quantity: 10,
     },
