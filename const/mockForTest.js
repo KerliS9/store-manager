@@ -58,8 +58,14 @@ const salesById = [
   ],
 ];
 
+const productPayload = {
+  name: 'Martelo de Thor',
+  quantity: 10,
+};
+
 module.exports = {
   products,
   sales,
   salesById,
+  productPayload,
 };
