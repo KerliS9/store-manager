@@ -28,7 +28,7 @@ describe('Check controllers: where function is getProductById', () => {
       expect(response.json.calledWith(products)).to.be.true;
     });
   });
-  /* describe('when there is no products in the database', () => {
+  describe('when there is no products in the database', () => {
     const response = {};
     const request = {};
 
@@ -48,7 +48,7 @@ describe('Check controllers: where function is getProductById', () => {
     });
     it('the method "json" should return an message', async () => {
       await ProductsControllers.getProductById(request, response);
-      expect(response.json.calledWith('Product not found')).to.be.true;
+      expect(response.json.calledWith({ message: 'Product not found' })).to.be.true;
     });
-  }) */
+  })
 })
