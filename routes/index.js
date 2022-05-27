@@ -15,6 +15,7 @@ const { validateProduct } = require('../middlewares/validateDateForPost');
 productsRoutes.get('/', ProductsControllers.getAllProducts);
 productsRoutes.get('/:id', ProductsControllers.getProductById);
 productsRoutes.post('/', validateProduct, ProductsControllers.addNewProduct);
+productsRoutes.put('/:id', ProductsControllers.updateProductById);
 
 salesRoutes.get('/', SalesControllers.getAllSales);
 salesRoutes.get('/:id', SalesControllers.getSaleById);

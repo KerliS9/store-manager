@@ -15,16 +15,29 @@ const getProductById = async (req, res) => {
 const addNewProduct = async (req, res, next) => {
   const { name, quantity } = req.body;
   const { statusCode, message, newProduct } = await ProductsServices.addNewProduct({ 
-    name, quantity });
-  console.log('camada controller', newProduct);
+    name, quantity,
+  });
   if (message) {
     return next({ statusCode, message });
   }
   return res.status(statusCode).json(newProduct);
 };
 
+const updateProductById = async (req, res, next) => {
+  const { id } = req.params;
+  console.log('camada controllers id: ', id);
+  const { name, quantity } = req.body;
+  console.log('camada controllers name, quantity: ', name, quantity);
+  const { statusCode, message, productUpdated } = await ProductsServices.updateProductById({
+    id, name, quantity,
+  });
+  if (message) return next({ statusCode, message });
+  return res.status(statusCode).json(productUpdated);
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   addNewProduct,
+  updateProductById,
 };

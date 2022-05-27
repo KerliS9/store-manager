@@ -20,11 +20,17 @@ const getProductByName = async (name) => {
 };
 
 const addNewProduct = async ({ name, quantity }) => {
-  console.log('model params', name);
   const query = 'INSERT INTO StoreManager.products(name, quantity) VALUES (?, ?);';
   const [{ insertId }] = await connection.execute(query, [name, quantity]);
-  console.log('camada model', { id: insertId, name, quantity });
   return { id: insertId, name, quantity };
+};
+
+const updateProductById = async ({ id, name, quantity }) => {
+  // console.log('camada model params:', id);
+  const query = 'UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;';
+  await connection.execute(query, [name, quantity, id]);
+  // console.log('camada model', { id, name, quantity });
+  return { id, name, quantity };
 };
 
 module.exports = {
@@ -32,4 +38,5 @@ module.exports = {
   getProductById,
   getProductByName,
   addNewProduct,
+  updateProductById,
 };
