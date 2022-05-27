@@ -34,7 +34,7 @@ const validateProduct = (req, res, next) => {
 
 const validateSale = (req, res, next) => {
   const product = Joi.object({
-    productId: Joi.string().required(),
+    productId: Joi.number().required(),
     quantity: Joi.number().integer().min(1).required(),  
   }).messages({
     'any.required': '{{#label}} is required',

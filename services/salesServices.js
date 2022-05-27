@@ -11,8 +11,14 @@ const getSaleById = async (id) => {
   return sale;
 };
 
-const addNewSale = async ({ productId, quantity }) => {
-  const newSale = await SalesModels.addNewProduct({ productId, quantity });
+const addNewSale = async (sale) => {
+  const saleId = await SalesModels.addNewSale();
+  console.log('camada service', saleId);
+  const insertProductsSold = [];
+  sale.map(({ productId, quantity }) => (
+    insertProductsSold.push(SalesModels.addProductSold({ productId, quantity }))
+    ));
+  const newSale = await Promise.all(insertProductsSold);
   console.log('camada service', newSale);
 
   return { statusCode: 201, newSale };

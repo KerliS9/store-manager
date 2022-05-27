@@ -21,20 +21,28 @@ FROM StoreManager.sales_products AS SP
   if (sale.length === 0) return false;
   return sale;
 };
-const addNewSale = async ({ productId, quantity }) => {
-  const querySale = 'INSERT INTO StoreManager.sales(date) VALUES(NOW());';
-  console.log('camada model Sales', querySale);
+
+const addNewSale = async () => {
+  const querySale = 'INSERT INTO StoreManager.sales VALUES();';
+  const [{ insertId }] = await connection.execute(querySale);
+  console.log('camada model Sales', insertId);
+  return { id: insertId };
+};
+
+const addProductSold = async ({ saleId, productId, quantity }) => {
+  // const teste = await addNewSale();
   const query = `INSERT INTO StoreManager.sales_products(sale_id, product_id, quantity)
-  VALUES(last_insert_id(), ?, ?);`;
-  const sale = await connection.execute(querySale);
-  console.log('camada model Sales-Products:', sale);
-  const [{ insertId }] = await connection.execute(query, [productId, quantity]);
-  console.log('retorno das querys: ', { id: insertId, productId, quantity });
-  return { id: insertId, productId, quantity };
+  VALUES(?, ?, ?);`;
+  // console.log('camada model Sales-Products:', teste);
+  // const [{ insertId }] = 
+  await connection.execute(query, [saleId, productId, quantity]);
+  console.log('retorno das querys: ', { saleId, productId, quantity });
+  // return { id: insertId, productId, quantity };
 };
 
 module.exports = {
   getAllSales,
   getSaleById,
   addNewSale,
+  addProductSold,
 };
