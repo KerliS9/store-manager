@@ -22,6 +22,7 @@ salesRoutes.get('/', SalesControllers.getAllSales);
 salesRoutes.get('/:id', SalesControllers.getSaleById);
 salesRoutes.post('/', validateSale, SalesControllers.addNewSale);
 salesRoutes.put('/:id', SalesControllers.updateSaleById);
+salesRoutes.delete('/:id', SalesControllers.deleteSaleById);
 
 module.exports = {
   productsRoutes,
