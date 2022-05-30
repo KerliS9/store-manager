@@ -32,15 +32,13 @@ const addNewSale = async (sale) => {
 };
 
 const updateSaleById = async ({ id }, sale) => {
-  console.log('service params id', id);
-  console.log('service params sale', sale);
   const saleExistOnDB = await SalesModels.getSaleById(id);
-  console.log('service venda existe', saleExistOnDB);
+  // console.log('service venda existe', saleExistOnDB);
   if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
   // const saleUpdated = await SalesModels.updateSaleById({ id, productId, quantity });
   const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
     SalesModels.updateSaleById({ id, productId, quantity }))));
-  console.log('service', saleUpdated);
+  // console.log('service', saleUpdated);
   return {
     statusCode: 200,
     data: {
@@ -48,6 +46,10 @@ const updateSaleById = async ({ id }, sale) => {
       itemUpdated: saleUpdated,
     } };
 };
+
+const deleteSaleById = () => {
+  
+}
 
 module.exports = {
   getAllSales,

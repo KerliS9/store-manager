@@ -41,11 +41,16 @@ const addProductSold = async ({ id, productId, quantity }) => {
 };
 
 const updateSaleById = async ({ id, productId, quantity }) => {
-  console.log('model params', id, productId, quantity);
+  // console.log('model params', id, productId, quantity);
   const query = `UPDATE StoreManager.sales_products SET product_id = ?, quantity = ?
   WHERE sale_id = ?;`;
   await connection.execute(query, [productId, quantity, id]);
   return { id, productId, quantity };
+};
+
+const deleteSaleById = async ({ id }) => {
+  const query = 'DELETE FROM StoreManager.sales_products WHERE sale_id = ?;';
+  await connection.execute(query, [id]);
 };
 
 module.exports = {
@@ -54,12 +59,11 @@ module.exports = {
   addNewSale,
   addProductSold,
   updateSaleById,
+  deleteSaleById,
 };
 
-/* const updateProductById = async ({ id, name, quantity }) => {
-  // console.log('camada model params:', id);
-  const query = 'UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;';
-  await connection.execute(query, [name, quantity, id]);
-  // console.log('camada model', { id, name, quantity });
-  return { id, name, quantity };
+/* const deleteProductById = async ({ id }) => {
+  const query = 'DELETE FROM StoreManager.products WHERE id = ?;';
+  await connection.execute(query, [id]);
+};
 }; */
