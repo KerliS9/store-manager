@@ -23,19 +23,31 @@ const addNewSale = async (req, res, next) => {
   return res.status(statusCode).json(data);
 };
 
+const updateSaleById = async (req, res, next) => {
+  const { id } = req.params;
+  const { productId, quantity } = req.body;
+  const { statusCode, message, saleUpdated } = await SalesServices.updateSaleById({
+    id, productId, quantity,
+  });
+  if (message) return next({ statusCode, message });
+  return res.status(statusCode).json(saleUpdated);
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   addNewSale,
+  updateSaleById,
 };
 
-/* const addNewProduct = async (req, res, next) => {
+/* const updateProductById = async (req, res, next) => {
+  const { id } = req.params;
+  // console.log('camada controllers id: ', id);
   const { name, quantity } = req.body;
-  const { statusCode, message, newProduct } = await ProductsServices.addNewProduct({ 
-    name, quantity,
+  // console.log('camada controllers name, quantity: ', name, quantity);
+  const { statusCode, message, productUpdated } = await ProductsServices.updateProductById({
+    id, name, quantity,
   });
-  if (message) {
-    return next({ statusCode, message });
-  }
-  return res.status(statusCode).json(newProduct);
+  if (message) return next({ statusCode, message });
+  return res.status(statusCode).json(productUpdated);
 }; */
