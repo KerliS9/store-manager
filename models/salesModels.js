@@ -41,7 +41,9 @@ const addProductSold = async ({ id, productId, quantity }) => {
 };
 
 const updateSaleById = async ({ id, productId, quantity }) => {
-  const query = 'UPDATE StoreManager.sales_products SET product_id = ?, quantity = ? WHERE id = ?;';
+  console.log('model params', id, productId, quantity);
+  const query = `UPDATE StoreManager.sales_products SET product_id = ?, quantity = ?
+  WHERE sale_id = ?;`;
   await connection.execute(query, [productId, quantity, id]);
   return { id, productId, quantity };
 };

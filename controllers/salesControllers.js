@@ -24,13 +24,13 @@ const addNewSale = async (req, res, next) => {
 };
 
 const updateSaleById = async (req, res, next) => {
-  const { id } = req.params;
-  const { productId, quantity } = req.body;
-  const { statusCode, message, saleUpdated } = await SalesServices.updateSaleById({
-    id, productId, quantity,
-  });
+  // const { id } = req.params;
+  // console.log('controller params', id);
+  // const { productId, quantity } = req.body;
+  // console.log('controller body', id);
+  const { statusCode, message, data } = await SalesServices.updateSaleById(req.params, req.body);
   if (message) return next({ statusCode, message });
-  return res.status(statusCode).json(saleUpdated);
+  return res.status(statusCode).json(data);
 };
 
 module.exports = {
