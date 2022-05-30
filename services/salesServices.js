@@ -31,15 +31,26 @@ const addNewSale = async (sale) => {
   };
 };
 
+const updateSaleById = async ({ id, productId, quantity }) => {
+  const saleExistOnDB = await SalesModels.getSaleById(id);
+  if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
+  const saleUpdated = await SalesModels.updateSaleById({ id, productId, quantity });
+  console.log('service', saleUpdated);
+  return { statusCode: 200, saleUpdated };
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   addNewSale,
+  updateSaleById,
 };
 
-/* const addNewProduct = async ({ name, quantity }) => {
-  const productExistsOnDB = await ProductsModels.getProductByName(name);
-  if (productExistsOnDB) return ({ statusCode: 409, message: 'Product already exists' });
-  const newProduct = await ProductsModels.addNewProduct({ name, quantity });
-  return { statusCode: 201, newProduct };
+/* const updateProductById = async ({ id, name, quantity }) => {
+  const productExistsOnDB = await ProductsModels.getProductById(id);
+  // console.log('camada service exist:', productExistsOnDB);
+  if (!productExistsOnDB) return ({ statusCode: 404, message: 'Product not found' });
+  const productUpdated = await ProductsModels.updateProductById({ id, name, quantity });
+  // console.log('camada service update:', productUpdated);
+  return { statusCode: 200, productUpdated };
 }; */
