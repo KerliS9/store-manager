@@ -1,12 +1,14 @@
 const Joi = require('joi');
 
 const checkTypeDetails = ({ details }) => {
+  // console.log('details', details[0]);
   const { type } = details[0];
+  // if (type === 'object') return 201;
   if (type === 'any.required') return 400;
   return 422;
 };
 
-const validateProduct = (req, res, next) => {
+const validateProduct = (req, _res, next) => {
   const product = Joi.object({
     name: Joi.string().min(5).required(),
     quantity: Joi.number().integer().min(1).required(),  
@@ -32,22 +34,32 @@ const validateProduct = (req, res, next) => {
 // 422 { "message": "\"name\" length must be at least 5 characters long" } - string.min
 // 422 { "message": "\"quantity\" must be greater than or equal to 1" } - number.min
 
-const validateSale = (req, res, next) => {
-  const product = Joi.object({
-    productId: Joi.number().required(),
-    quantity: Joi.number().integer().min(1).required(),  
-  }).messages({
+const validateSale = (req, _res, next) => {
+  const sale = Joi.array().items({
+      productId: Joi.number().required(),
+      quantity: Joi.number().integer().min(1).required(),
+    }).messages({
     'any.required': '{{#label}} is required',
-    'string.min': '{{#label}} length must be at least 5 characters long',
     'number.min': '{{#label}} must be greater than or equal to 1',
   });
 
-  const { error } = product.validate(req.body);
+  /* const sale = Joi.object({
+    itemsSold: Joi.array().items({
+      productId: Joi.number().required(),
+      quantity: Joi.number().integer().min(1).required(),
+    }).required(), // "itemsSold[0].productId" is required
+  }).messages({
+    'any.required': '{{#label}} is required',
+    'number.min': '{{#label}} must be greater than or equal to 1',
+  }); */
+
+  const { error } = sale.validate(req.body);
 
   if (error) {
     next({
       statusCode: checkTypeDetails(error),
-      message: error.details[0].message,
+      // message: error.details[0].message,
+      message: error.details.map((e) => e.message),
     });
   }
   next();

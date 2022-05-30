@@ -12,16 +12,23 @@ const getSaleById = async (id) => {
 };
 
 const addNewSale = async (sale) => {
-  const saleId = await SalesModels.addNewSale();
-  console.log('camada service', saleId);
+  const { id } = await SalesModels.addNewSale();
+  // console.log('camada service id da venda', id);
+  // console.log('camada service params', sale);
   const insertProductsSold = [];
-  sale.map(({ productId, quantity }) => (
-    insertProductsSold.push(SalesModels.addProductSold({ productId, quantity }))
-    ));
-  const newSale = await Promise.all(insertProductsSold);
-  console.log('camada service', newSale);
+  await Promise.all(sale.map(({ productId, quantity }) => (
+    insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
+    )));
+  // const newSale = await Promise.all(insertProductsSold);
+  // console.log('camada service depois do map', sale);
 
-  return { statusCode: 201, newSale };
+  return {
+    statusCode: 201,
+    data: {
+      id,
+      itemsSold: sale,
+    },
+  };
 };
 
 module.exports = {

@@ -13,15 +13,14 @@ const getSaleById = async (req, res) => {
 };
 
 const addNewSale = async (req, res, next) => {
-  const { productId, quantity } = req.body;
-  console.log('controller req.body: ', req.body);
-  const { statusCode, message, newSale } = await SalesServices.addNewSale({
-    productId, quantity,
-  });
+  // const { productId, quantity } = req.body;
+  const { statusCode, message, data } = await SalesServices.addNewSale(req.body);
+  // { statusCode, message, data }
+  // console.log('controller req.body produtos vendidos: ', statusCode, message, data);
   if (message) {
     return next({ statusCode, message });
   }
-  return res.status(statusCode).json(newSale);
+  return res.status(statusCode).json(data);
 };
 
 module.exports = {

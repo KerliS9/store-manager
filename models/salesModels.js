@@ -25,18 +25,18 @@ FROM StoreManager.sales_products AS SP
 const addNewSale = async () => {
   const querySale = 'INSERT INTO StoreManager.sales VALUES();';
   const [{ insertId }] = await connection.execute(querySale);
-  console.log('camada model Sales', insertId);
+  // console.log('camada model id de uma venda', insertId);
   return { id: insertId };
 };
 
-const addProductSold = async ({ saleId, productId, quantity }) => {
+const addProductSold = async ({ id, productId, quantity }) => {
   // const teste = await addNewSale();
   const query = `INSERT INTO StoreManager.sales_products(sale_id, product_id, quantity)
   VALUES(?, ?, ?);`;
-  // console.log('camada model Sales-Products:', teste);
+  // console.log('camada model Sales-Products:', id, productId, quantity);
   // const [{ insertId }] = 
-  await connection.execute(query, [saleId, productId, quantity]);
-  console.log('retorno das querys: ', { saleId, productId, quantity });
+  await connection.execute(query, [id, productId, quantity]);
+  // console.log('Model retorno array dos produtos vendidos: ', { id, productId, quantity });
   // return { id: insertId, productId, quantity };
 };
 
