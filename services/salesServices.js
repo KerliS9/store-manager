@@ -31,38 +31,40 @@ const addNewSale = async (sale) => {
   };
 };
 
+// const saleUpdated = await SalesModels.updateSaleById({ id, productId, quantity });
 const updateSaleById = async ({ id }, sale) => {
+  const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
+    SalesModels.updateSaleById({ id, productId, quantity }))));
+    // console.log('service', saleUpdated);
+    return {
+      statusCode: 200,
+      data: {
+        saleId: id,
+        itemUpdated: saleUpdated,
+      } };
+    };
+    
+const deleteSaleById = async ({ id }) => {
   const saleExistOnDB = await SalesModels.getSaleById(id);
   // console.log('service venda existe', saleExistOnDB);
   if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
-  // const saleUpdated = await SalesModels.updateSaleById({ id, productId, quantity });
-  const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
-    SalesModels.updateSaleById({ id, productId, quantity }))));
-  // console.log('service', saleUpdated);
-  return {
-    statusCode: 200,
-    data: {
-      saleId: id,
-      itemUpdated: saleUpdated,
-    } };
+  await SalesModels.deleteSaleById({ id });
+  return { statusCode: 204 };
 };
-
-const deleteSaleById = () => {
-  
-}
 
 module.exports = {
   getAllSales,
   getSaleById,
   addNewSale,
   updateSaleById,
+  deleteSaleById,
 };
 
-/* const updateProductById = async ({ id, name, quantity }) => {
+/* const deleteProductById = async ({ id }) => {
   const productExistsOnDB = await ProductsModels.getProductById(id);
   // console.log('camada service exist:', productExistsOnDB);
   if (!productExistsOnDB) return ({ statusCode: 404, message: 'Product not found' });
-  const productUpdated = await ProductsModels.updateProductById({ id, name, quantity });
-  // console.log('camada service update:', productUpdated);
-  return { statusCode: 200, productUpdated };
+  await ProductsModels.deleteProductById({ id });
+  return { statusCode: 204 };
+};
 }; */
