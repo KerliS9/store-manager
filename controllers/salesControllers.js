@@ -13,10 +13,8 @@ const getSaleById = async (req, res) => {
 };
 
 const addNewSale = async (req, res, next) => {
-  // const { productId, quantity } = req.body;
   const { statusCode, message, data } = await SalesServices.addNewSale(req.body);
-  // { statusCode, message, data }
-  // console.log('controller req.body produtos vendidos: ', statusCode, message, data);
+  console.log('controller retorno do service produtos vendidos: ', statusCode, message, data);
   if (message) {
     return next({ statusCode, message });
   }

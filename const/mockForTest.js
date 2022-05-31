@@ -64,9 +64,27 @@ const productPayload = {
   quantity: 10,
 };
 
+const salePayload = {
+      id: 1,
+      productId: 1,
+      quantity: 3,
+    };
+
+const saleResult = {
+  id: 1,
+  itemsSold: [
+    {
+      productId: 1,
+      quantity: 3,
+    },
+  ],
+};
+
 module.exports = {
   products,
   sales,
   salesById,
   productPayload,
+  salePayload,
+  saleResult,
 };

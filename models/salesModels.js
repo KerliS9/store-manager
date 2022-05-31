@@ -30,14 +30,11 @@ const addNewSale = async () => {
 };
 
 const addProductSold = async ({ id, productId, quantity }) => {
-  // const teste = await addNewSale();
   const query = `INSERT INTO StoreManager.sales_products(sale_id, product_id, quantity)
-  VALUES(?, ?, ?);`;
-  // console.log('camada model Sales-Products:', id, productId, quantity);
-  // const [{ insertId }] = 
+  VALUES(?, ?, ?);`; 
   await connection.execute(query, [id, productId, quantity]);
-  // console.log('Model retorno array dos produtos vendidos: ', { id, productId, quantity });
-  // return { id: insertId, productId, quantity };
+  // console.log('models params', teste);
+  return { id, productId, quantity };
 };
 
 const updateSaleById = async ({ id, productId, quantity }) => {
