@@ -13,7 +13,10 @@ const getProductById = async (id) => {
 
 const addNewProduct = async ({ name, quantity }) => {
   const productExistsOnDB = await ProductsModels.getProductByName(name);
-  if (productExistsOnDB) return ({ statusCode: 409, message: 'Product already exists' });
+  // console.log('service nome do produto', typeof productExistsOnDB);
+  if (productExistsOnDB !== undefined) {
+    return ({ statusCode: 409, message: 'Product already exists' });
+  }
   const newProduct = await ProductsModels.addNewProduct({ name, quantity });
   return { statusCode: 201, newProduct };
 };

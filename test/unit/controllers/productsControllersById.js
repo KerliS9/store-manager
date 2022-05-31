@@ -28,7 +28,7 @@ describe('Check controllers: where function is getProductById', () => {
       expect(response.json.calledWith(products)).to.be.true;
     });
   });
-  describe('when there is no products in the database', () => {
+  /* describe('when there is no products in the database', () => {
     const response = {};
     const request = {};
 
@@ -43,12 +43,14 @@ describe('Check controllers: where function is getProductById', () => {
       ProductsServices.getProductById.restore();
     });
     it('the method "status" is called with code 404', async () => {
-      await ProductsControllers.getProductById(request, response);
+      const test = await ProductsControllers.getProductById(request, response);
+      // console.log('controller tests', test);
       expect(response.status.calledWith(404)).to.be.true;
+      expect(nex)
     });
     it('the method "json" should return an message', async () => {
       await ProductsControllers.getProductById(request, response);
       expect(response.json.calledWith({ message: 'Product not found' })).to.be.true;
     });
-  })
+  }) */
 })

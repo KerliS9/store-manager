@@ -59,6 +59,7 @@ const salesById = [
 ];
 
 const productPayload = {
+  id: 1,
   name: 'Martelo de Thor',
   quantity: 10,
 };

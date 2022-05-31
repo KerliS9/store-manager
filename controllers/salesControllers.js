@@ -43,10 +43,3 @@ module.exports = {
   updateSaleById,
   deleteSaleById,
 };
-
-/* const deleteProductById = async (req, res, next) => {
-  const { id } = req.params;
-  const { statusCode, message } = await ProductsServices.deleteProductById({ id });
-  if (message) return next({ statusCode, message });
-  return res.status(statusCode).send();
-}; */

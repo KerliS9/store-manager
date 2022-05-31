@@ -19,8 +19,6 @@ const addNewSale = async (sale) => {
   await Promise.all(sale.map(({ productId, quantity }) => (
     insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
     )));
-  // const newSale = await Promise.all(insertProductsSold);
-  // console.log('camada service depois do map', sale);
 
   return {
     statusCode: 201,
@@ -59,12 +57,3 @@ module.exports = {
   updateSaleById,
   deleteSaleById,
 };
-
-/* const deleteProductById = async ({ id }) => {
-  const productExistsOnDB = await ProductsModels.getProductById(id);
-  // console.log('camada service exist:', productExistsOnDB);
-  if (!productExistsOnDB) return ({ statusCode: 404, message: 'Product not found' });
-  await ProductsModels.deleteProductById({ id });
-  return { statusCode: 204 };
-};
-}; */

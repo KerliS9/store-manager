@@ -3,7 +3,6 @@ const Joi = require('joi');
 const checkTypeDetails = ({ details }) => {
   // console.log('details', details[0]);
   const { type } = details[0];
-  // if (type === 'object') return 201;
   if (type === 'any.required') return 400;
   return 422;
 };
@@ -19,7 +18,6 @@ const validateProduct = (req, _res, next) => {
   });
 
   const { error } = product.validate(req.body);
-  // console.log('middlewares product', error);
 
   if (error) {
     next({
@@ -42,16 +40,6 @@ const validateSale = (req, _res, next) => {
     'any.required': '{{#label}} is required',
     'number.min': '{{#label}} must be greater than or equal to 1',
   });
-
-  /* const sale = Joi.object({
-    itemsSold: Joi.array().items({
-      productId: Joi.number().required(),
-      quantity: Joi.number().integer().min(1).required(),
-    }).required(), // "itemsSold[0].productId" is required
-  }).messages({
-    'any.required': '{{#label}} is required',
-    'number.min': '{{#label}} must be greater than or equal to 1',
-  }); */
 
   const { error } = sale.validate(req.body);
 

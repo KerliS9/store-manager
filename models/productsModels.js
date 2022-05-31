@@ -15,13 +15,15 @@ const getProductById = async (id) => {
 const getProductByName = async (name) => {
   const query = 'SELECT * FROM StoreManager.products WHERE name = ?;';
   const [product] = await connection.execute(query, [name]);
-  if (product.length === 0) return false;
+  console.log('model name', product[0]);
+  // if (product.length === 0) return false;
   return product[0];
 };
 
 const addNewProduct = async ({ name, quantity }) => {
   const query = 'INSERT INTO StoreManager.products(name, quantity) VALUES (?, ?);';
   const [{ insertId }] = await connection.execute(query, [name, quantity]);
+  console.log('model addNewProduct', insertId);
   return { id: insertId, name, quantity };
 };
 
