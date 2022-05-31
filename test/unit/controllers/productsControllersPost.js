@@ -4,7 +4,7 @@ const ProductsServices = require('../../../services/productsServices');
 const ProductsControllers = require('../../../controllers/productsControllers');
 const { productPayload } = require('../../../const/mockForTest');
 
-describe.only('Check controllers: where function is addNewProduct', () => {
+describe('Check controllers: where function is addNewProduct', () => {
   describe('when there is a product to add to the database', () => {
     const response = {};
     const request = {};
@@ -44,7 +44,7 @@ describe.only('Check controllers: where function is addNewProduct', () => {
     after(() => {
       ProductsServices.addNewProduct.restore();
     });
-    it('the method "status" is called with code 404', async () => {
+    it('the method "status" is called with code 409 e method "json" have a message', async () => {
       await ProductsControllers.addNewProduct(request, response, next.next);
       expect(nextSpy.calledWith({ statusCode: 409, message: 'Product already exists' })).to.be.true;
     });

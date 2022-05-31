@@ -5,12 +5,16 @@ const getAllProducts = async (_req, res) => {
   return res.status(200).json(products);
 };
 
-const getProductById = async (req, res) => {
+const getProductById = async (req, res, next) => {
   const { id } = req.params;
-  const product = await ProductsServices.getProductById(id);
-  // console.log('controller', product);
-  if (product === null) return res.status(404).json({ message: 'Product not found' });
-  return res.status(200).json(product);
+  const { statusCode, message, product } = await ProductsServices.getProductById(id);
+  // console.log('controller product', product);
+  if (message) {
+    return next({ statusCode, message });
+  }
+  // if (product === null) return res.status(404).json({ message: 'Product not found' });
+  // return res.status(200).json(product);
+  return res.status(statusCode).json(product);
 };
 
 const addNewProduct = async (req, res, next) => {

@@ -12,9 +12,9 @@ describe('Check controllers: where function is getProductById', () => {
     before(() => {
       request.params = { id: 1 };
       response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns();
+      response.json = sinon.stub().returns(response);
 
-      sinon.stub(ProductsServices, 'getProductById').resolves(products);
+      sinon.stub(ProductsServices, 'getProductById').resolves({ statusCode: 200, product: products[0][0] });
     });
     after(() => {
       ProductsServices.getProductById.restore();
@@ -25,32 +25,28 @@ describe('Check controllers: where function is getProductById', () => {
     });
     it('the method "json" should return an object', async () => {
       await ProductsControllers.getProductById(request, response);
-      expect(response.json.calledWith(products)).to.be.true;
+      expect(response.json.calledWith(products[0][0])).to.be.true;
     });
   });
-  /* describe('when there is no products in the database', () => {
+  describe('when there is no products in the database', () => {
     const response = {};
     const request = {};
+    const next = { next: (args) => {} };
+    const nextSpy = sinon.spy(next, 'next');
 
     before(() => {
-      request.params = { id: 1 };
+      request.params = { };
       response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns();
+      response.json = sinon.stub().returns(response);
 
-      sinon.stub(ProductsServices, 'getProductById').resolves([]);
+      sinon.stub(ProductsServices, 'getProductById').resolves({ statusCode: 404, message: 'Product not found' });
     });
     after(() => {
       ProductsServices.getProductById.restore();
     });
-    it('the method "status" is called with code 404', async () => {
-      const test = await ProductsControllers.getProductById(request, response);
-      // console.log('controller tests', test);
-      expect(response.status.calledWith(404)).to.be.true;
-      expect(nex)
+    it('the method "status" is called with code 404 and method "json" should return an message', async () => {
+      await ProductsControllers.getProductById(request, response, next.next);
+      expect(nextSpy.calledWith({ statusCode: 404, message: 'Product not found' })).to.be.true;
     });
-    it('the method "json" should return an message', async () => {
-      await ProductsControllers.getProductById(request, response);
-      expect(response.json.calledWith({ message: 'Product not found' })).to.be.true;
-    });
-  }) */
+  })
 })

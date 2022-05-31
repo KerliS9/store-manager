@@ -7,8 +7,11 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   const product = await ProductsModels.getProductById(id);
-  if (!product) return null;
-  return product;
+  // console.log('service', product);
+  // if (!product) return null;
+  if (!product) return ({ statusCode: 404, message: 'Product not found' });
+  // return product;
+  return { statusCode: 200, product };
 };
 
 const addNewProduct = async ({ name, quantity }) => {

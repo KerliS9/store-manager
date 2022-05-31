@@ -15,17 +15,18 @@ describe('Check Services: get product by id from database', () => {
     });
 
     it('should be an object', async () => {
-      const [response] = await ProductsServices.getProductById(1);
-      // console.log('teste service', response);
-      expect(response[0]).to.be.an('object');
+      const { product } = await ProductsServices.getProductById(1);
+      // console.log('teste service', product);
+      expect(product[0][0]).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
-      const [response] = await ProductsServices.getProductById(1);
-      expect(response[0]).to.include.all.keys('id', 'name', 'quantity');
+      const { product } = await ProductsServices.getProductById(1);
+      // console.log('teste service 2', product[0][0]);
+      expect(product[0][0]).to.include.all.keys('id', 'name', 'quantity');
     });
     it('object should not to be empty', async () => {
-      const [response] = await ProductsServices.getProductById(1);
-      expect(response[0]).to.not.be.empty;
+      const { product } = await ProductsServices.getProductById(1);
+      expect(product[0][0]).to.not.be.empty;
     });
   })
 
@@ -36,10 +37,10 @@ describe('Check Services: get product by id from database', () => {
     after(() => {
       connection.execute.restore();
     })
-    it('should return null', async () => {
-      const response = await ProductsServices.getProductById();
+    it('should return an object with the keys statusCode and message ', async () => {
+      const response = await ProductsServices.getProductById(1);
       // console.log('teste product ', response);
-      expect(response).to.be.null;
+      expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })
 })
