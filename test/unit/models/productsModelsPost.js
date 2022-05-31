@@ -16,13 +16,13 @@ describe('Check Models Post: insert product on database', () => {
     });
     it('should return an id', async() => {
       const response = await ProductsModels.getProductByName(name);
-      console.log('name', response);
+      // console.log('name', response);
       expect(response).to.be.a('string');
     })
 
     it('should be an object', async () => {
       const response = await ProductsModels.addNewProduct(productPayload);
-      console.log('teste model', response);
+      // console.log('teste model', response);
       expect(response).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {

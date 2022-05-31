@@ -18,6 +18,7 @@ const addNewProduct = async (req, res, next) => {
   const { statusCode, message, newProduct } = await ProductsServices.addNewProduct({ 
     name, quantity,
   });
+  console.log('controllers', newProduct);
   if (message) {
     return next({ statusCode, message });
   }
