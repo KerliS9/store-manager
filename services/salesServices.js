@@ -29,6 +29,7 @@ const addNewSale = async (sale) => {
 const updateSaleById = async ({ id }, sale) => {
   const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
     SalesModels.updateSaleById({ id, productId, quantity }))));
+    console.log('service', saleUpdated);
     return {
       statusCode: 200,
       data: {
