@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
-const { salePayload, saleResult } = require('../../../const/mockForTest');
+const { salePayload, saleResult } = require('../../../const/mockForSales');
 
 describe('Check Sales Models Post: insert product on database', () => {
   describe('when the insertion happens successfully', () => {

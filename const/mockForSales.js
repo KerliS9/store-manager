@@ -57,19 +57,6 @@ const salePayloadPost = [
   },
 ];
 
-const salePayloadReqBody = [
-  {
-    id: 1,
-    productId: 2,
-    quantity: 3,
-  },
-  {
-    id: 1,
-    productId: 1,
-    quantity: 3,
-  },
-];
-
 const saleResult = {
   id: 1,
   itemsSold: [

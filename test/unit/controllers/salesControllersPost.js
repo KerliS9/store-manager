@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const SalesServices = require('../../../services/salesServices');
 const SalesControllers = require('../../../controllers/salesControllers');
-const { salePayloadReqBody, saleResult } = require('../../../const/mockForSales');
+const { salePayloadPost, saleResult } = require('../../../const/mockForSales');
 
 describe('Check controllers: where function is addNewProduct', () => {
   describe('when there is a product to add to the database', () => {
@@ -10,7 +10,7 @@ describe('Check controllers: where function is addNewProduct', () => {
     const request = {};
 
     before(() => {
-      request.body = salePayloadReqBody;
+      request.body = salePayloadPost;
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns(response);
 

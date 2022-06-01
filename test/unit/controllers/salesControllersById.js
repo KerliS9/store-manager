@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const SalesServices = require('../../../services/salesServices');
 const SalesControllers = require('../../../controllers/salesControllers');
-const { sales } = require('../../../const/mockForTest');
+const { sales } = require('../../../const/mockForSales');
 
 describe('Check controllers: where function is getSaleById', () => {
   describe('when there is a sale in the database', () => {

@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const SalesService = require('../../../services/salesServices');
-const { salesById } = require('../../../const/mockForTest');
+const { salesById } = require('../../../const/mockForSales');
 
 describe('Check Services Sales: get sale by id from database', () => {
   describe('when there is a sale that match with the id in the database', () => {

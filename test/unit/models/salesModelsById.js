@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
-const { salesById } = require('../../../const/mockForTest');
+const { salesById } = require('../../../const/mockForSales');
 
 describe('Check Models Sales: get sale by id from database', () => {
   describe('when there is a sale that match with the id in the database', () => {

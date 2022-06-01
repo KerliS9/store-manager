@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const SalesServices = require('../../../services/salesServices');
-const { salePayloadPost, saleResult } = require('../../../const/mockForTest');
+const { salePayloadPost, saleResult } = require('../../../const/mockForSales');
 
 describe('Check Sale Service Post: insert sale on database', () => {
   describe('when the insertion happens successfully', () => {
