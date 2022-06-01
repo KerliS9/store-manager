@@ -13,13 +13,11 @@ const getSaleById = async (id) => {
 
 const addNewSale = async (sale) => {
   const { id } = await SalesModels.addNewSale();
-  console.log('camada service id da venda', id);
-  console.log('camada service params', sale);
   const insertProductsSold = [];
   await Promise.all(sale.map(({ productId, quantity }) => (
     insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
     )));
-    console.log('service', insertProductsSold);
+    // console.log('service', insertProductsSold);
 
   return {
     statusCode: 201,
@@ -30,7 +28,6 @@ const addNewSale = async (sale) => {
   };
 };
 
-// const saleUpdated = await SalesModels.updateSaleById({ id, productId, quantity });
 const updateSaleById = async ({ id }, sale) => {
   const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
     SalesModels.updateSaleById({ id, productId, quantity }))));

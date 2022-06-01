@@ -16,26 +16,28 @@ describe('Check Sale Service Post: insert sale on database', () => {
       SalesModels.addProductSold.restore();
     });
     it('should return an id', async() => {
-      const {id} = await SalesModels.addNewSale();
-      console.log('name on service', id);
+      const { id } = await SalesModels.addNewSale();
+      // console.log('name on service', id);
       expect(id).to.be.a('number');
     })
 
     it('should be an object', async () => {
-      const response = await SalesServices.addNewSale(salePayloadPost);
-      // salePayloadPost.map()
-      console.log('teste service', response);
-      expect(response).to.be.an('object');
+      const {data: { itemsSold }} = await SalesServices.addNewSale(salePayloadPost);
+      /* await Promise.all(sale.map(({ productId, quantity }) => (
+        insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
+        ))); */
+      // console.log('teste service', itemsSold[0]);
+      expect(itemsSold[0]).to.be.an('object');
     });
-    it('the object should have the keys id, productId, quantity', async () => {
-      const { newProduct } = await SalesServices.addNewSale(salePayloadPost);
-      console.log('teste service keys', newProduct);
-      expect(newProduct).to.include.all.keys('id', 'productId', 'quantity');
+    it('the object should have the keys id, itemsSold', async () => {
+      const { data } = await SalesServices.addNewSale(salePayloadPost);
+      // console.log('teste service keys', data);
+      expect(data).to.include.all.keys('id', 'itemsSold');
     });
     it('object should not to be empty', async () => {
-      const { newProduct } = await SalesServices.addNewSale(salePayloadPost);
-      console.log('teste service not empty', newProduct);
-      expect(newProduct).to.not.be.empty;
+      const { data: { itemsSold } } = await SalesServices.addNewSale(salePayloadPost);
+      // console.log('teste service not empty', itemsSold[0]);
+      expect(itemsSold[0]).to.not.be.empty;
     });
   });
 })
