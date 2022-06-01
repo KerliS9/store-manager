@@ -39,14 +39,14 @@ describe('Check controllers: where function is addNewProduct', () => {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns(response);
       
-      sinon.stub(SalesServices, 'addNewSale').resolves({ statusCode: 422, message: error });
+      sinon.stub(SalesControllers, 'addNewSale').resolves({ statusCode: 422 });
     });
     after(() => {
-      SalesServices.addNewSale.restore();
+      SalesControllers.addNewSale.restore();
     });
     it('the method "status" is called with code 409 e method "json" have a message', async () => {
       await SalesControllers.addNewSale(request, response, next.next);
       expect(nextSpy.calledWith({ statusCode: 422, message: error })).to.be.true;
-    });
+    }); 
   }) */
 })
