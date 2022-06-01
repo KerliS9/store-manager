@@ -73,5 +73,4 @@ module.exports = {
   salePayload,
   saleResult,
   salePayloadPost,
-  salePayloadReqBody,
 };
