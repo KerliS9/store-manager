@@ -16,7 +16,6 @@ describe('Check Services Sales: get sale by id from database', () => {
 
     it('should be an object', async () => {
       const [response] = await SalesService.getSaleById(1);
-      // console.log('teste service', response);
       expect(response[0]).to.be.an('object');
     });
     it('the object should have the keys date, productId, quantity', async () => {
@@ -38,7 +37,6 @@ describe('Check Services Sales: get sale by id from database', () => {
     })
     it('should return null', async () => {
       const response = await SalesService.getSaleById(1);
-      // console.log('teste product ', response);
       expect(response).to.be.null;
     })
   })

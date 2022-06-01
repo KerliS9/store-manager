@@ -17,7 +17,6 @@ const addNewSale = async (sale) => {
   await Promise.all(sale.map(({ productId, quantity }) => (
     insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
     )));
-    // console.log('service', insertProductsSold);
 
   return {
     statusCode: 201,
@@ -31,7 +30,6 @@ const addNewSale = async (sale) => {
 const updateSaleById = async ({ id }, sale) => {
   const saleUpdated = await Promise.all(sale.map(({ productId, quantity }) => (
     SalesModels.updateSaleById({ id, productId, quantity }))));
-    // console.log('service', saleUpdated);
     return {
       statusCode: 200,
       data: {
@@ -42,7 +40,6 @@ const updateSaleById = async ({ id }, sale) => {
     
 const deleteSaleById = async ({ id }) => {
   const saleExistOnDB = await SalesModels.getSaleById(id);
-  // console.log('service venda existe', saleExistOnDB);
   if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
   await SalesModels.deleteSaleById({ id });
   return { statusCode: 204 };

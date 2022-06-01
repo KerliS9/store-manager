@@ -40,7 +40,6 @@ describe('Check Models Sales: get all sales from database', () => {
     })
     it('should return an empty array', async () => {
       const response = await SalesModels.getAllSales();
-      // console.log('test sales', response);
       expect(response).to.be.empty;
       expect(response).to.be.an('array');
     })

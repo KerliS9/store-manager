@@ -25,7 +25,6 @@ FROM StoreManager.sales_products AS SP
 const addNewSale = async () => {
   const querySale = 'INSERT INTO StoreManager.sales VALUES();';
   const [{ insertId }] = await connection.execute(querySale);
-  // console.log('camada model id de uma venda', insertId);
   return { id: insertId };
 };
 
@@ -33,12 +32,10 @@ const addProductSold = async ({ id, productId, quantity }) => {
   const query = `INSERT INTO StoreManager.sales_products(sale_id, product_id, quantity)
   VALUES(?, ?, ?);`; 
   await connection.execute(query, [id, productId, quantity]);
-  // console.log('models params', teste);
   return { id, productId, quantity };
 };
 
 const updateSaleById = async ({ id, productId, quantity }) => {
-  // console.log('model params', id, productId, quantity);
   const query = `UPDATE StoreManager.sales_products SET product_id = ?, quantity = ?
   WHERE sale_id = ?;`;
   await connection.execute(query, [productId, quantity, id]);

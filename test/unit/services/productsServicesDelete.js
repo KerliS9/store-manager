@@ -18,12 +18,10 @@ describe('Check Services Sales Delete: delete sale from database', () => {
 
     it('should be an object', async () => {
       const response = await ProductsServices.getProductById(1);
-      // console.log('teste service', response);
       expect(response).to.be.an('object');
     });
     it('the object should have the keys statusCode', async () => {
       const response = await ProductsServices.deleteProductById(1);
-      // console.log('teste service', response);
       expect(response).to.include.all.keys('statusCode');
     });
   })
@@ -39,12 +37,10 @@ describe('Check Services Sales Delete: delete sale from database', () => {
     });
     it('should be an empty', async () => {
       const response = await ProductsModels.getProductById(1);
-      // console.log('teste service', response);
       expect(response).to.be.empty;
     });
     it('should return the keys statusCode and message', async () => {
       const response = await ProductsServices.deleteProductById(1);
-      // console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');
     })
   })

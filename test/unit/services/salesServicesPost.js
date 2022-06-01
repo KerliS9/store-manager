@@ -17,7 +17,6 @@ describe('Check Sale Service Post: insert sale on database', () => {
     });
     it('should return an id', async() => {
       const { id } = await SalesModels.addNewSale();
-      // console.log('name on service', id);
       expect(id).to.be.a('number');
     })
 
@@ -27,12 +26,10 @@ describe('Check Sale Service Post: insert sale on database', () => {
     });
     it('the object should have the keys id, itemsSold', async () => {
       const { data } = await SalesServices.addNewSale(salePayloadPost);
-      // console.log('teste service keys', data);
       expect(data).to.include.all.keys('id', 'itemsSold');
     });
     it('object should not to be empty', async () => {
       const { data: { itemsSold } } = await SalesServices.addNewSale(salePayloadPost);
-      // console.log('teste service not empty', itemsSold[0]);
       expect(itemsSold[0]).to.not.be.empty;
     });
   });

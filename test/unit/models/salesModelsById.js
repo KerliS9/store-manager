@@ -15,7 +15,6 @@ describe('Check Models Sales: get sale by id from database', () => {
 
     it('should be an array', async () => {
       const response = await SalesModels.getSaleById(1);
-      // console.log('teste model', response);
       expect(response).to.be.an('array');
     });
     it('the object should have the keys date, productId, quantity', async () => {

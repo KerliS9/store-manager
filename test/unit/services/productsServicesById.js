@@ -16,12 +16,10 @@ describe('Check Services: get product by id from database', () => {
 
     it('should be an object', async () => {
       const { product } = await ProductsServices.getProductById(1);
-      // console.log('teste service', product);
       expect(product[0][0]).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
       const { product } = await ProductsServices.getProductById(1);
-      // console.log('teste service 2', product[0][0]);
       expect(product[0][0]).to.include.all.keys('id', 'name', 'quantity');
     });
     it('object should not to be empty', async () => {
@@ -32,16 +30,13 @@ describe('Check Services: get product by id from database', () => {
 
   describe('when there is no product in the database', () => {
     before(() => {
-      // sinon.stub(ProductsModels, 'getProductById').resolves([[]]);
       sinon.stub(ProductsServices, 'getProductById').resolves({ statusCode: 404, message: 'Product not found' })
     });
     after(() => {
-      // ProductsModels.getProductById.restore();
       ProductsServices.getProductById.restore();
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.getProductById(1);
-      // console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })

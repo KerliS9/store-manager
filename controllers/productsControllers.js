@@ -8,12 +8,9 @@ const getAllProducts = async (_req, res) => {
 const getProductById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message, product } = await ProductsServices.getProductById(id);
-  // console.log('controller product', product);
   if (message) {
     return next({ statusCode, message });
   }
-  // if (product === null) return res.status(404).json({ message: 'Product not found' });
-  // return res.status(200).json(product);
   return res.status(statusCode).json(product);
 };
 
@@ -22,9 +19,6 @@ const addNewProduct = async (req, res, next) => {
   const { statusCode, message, newProduct } = await ProductsServices.addNewProduct({ 
     name, quantity,
   });
-  // console.log('controllers', newProduct);
-  // console.log('controllers statusCode', statusCode);
-  // console.log('controllers message', message);
   if (message) {
     return next({ statusCode, message });
   }
@@ -46,7 +40,6 @@ const updateProductById = async (req, res, next) => {
 const deleteProductById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message } = await ProductsServices.deleteProductById({ id });
-  // console.log('controllers', statusCode, message);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).send();
 };

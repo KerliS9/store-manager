@@ -14,7 +14,6 @@ const getSaleById = async (req, res) => {
 
 const addNewSale = async (req, res, next) => {
   const { statusCode, message, data } = await SalesServices.addNewSale(req.body);
-  // console.log('controller retorno do service produtos vendidos: ', statusCode, message, data);
   if (message) {
     return next({ statusCode, message });
   }
