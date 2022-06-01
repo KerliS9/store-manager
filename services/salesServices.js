@@ -13,14 +13,10 @@ const getSaleById = async (id) => {
 
 const addNewSale = async (sale) => {
   const { id } = await SalesModels.addNewSale();
-  // console.log('service', sale);
   const insertProductsSold = [];
   await Promise.all(sale.map(({ productId, quantity }) => (
     insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
-    )));
-  // if (sale.map((s) => Object.keys(s).includes('productId', 'quantity'))) {
-    // console.log('teste if');
-    
+    )));    
     return {
       statusCode: 201,
       data: {
@@ -28,7 +24,6 @@ const addNewSale = async (sale) => {
         itemsSold: sale,
       },
     };
-  // }
 };
 
 const updateSaleById = async ({ id }, sale) => {

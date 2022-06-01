@@ -25,11 +25,9 @@ const addNewProduct = async ({ name, quantity }) => {
 };
 
 const updateProductById = async ({ id, name, quantity }) => {
-  // console.log('camada model params:', id);
   const query = 'UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;';
   await connection.execute(query, [name, quantity, id]);
-  // console.log('camada model', { id, name, quantity });
-  return { id, name, quantity };
+  return getProductById(id);
 };
 
 const deleteProductById = async ({ id }) => {
