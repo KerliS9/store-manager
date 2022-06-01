@@ -28,25 +28,4 @@ describe('Check controllers: where function is addNewProduct', () => {
       expect(response.json.calledWith(saleResult)).to.be.true;
     });
   });
-  /* describe('when there is no products in the database', () => {
-    const response = {}; // usar para validar as informações incorretas
-    const request = {};
-    const next = { next: (args) => {} };
-    const nextSpy = sinon.spy(next, 'next');
-
-    before(() => {
-      request.body = { };
-      response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns(response);
-      
-      sinon.stub(SalesControllers, 'addNewSale').resolves({ statusCode: 422 });
-    });
-    after(() => {
-      SalesControllers.addNewSale.restore();
-    });
-    it('the method "status" is called with code 409 e method "json" have a message', async () => {
-      await SalesControllers.addNewSale(request, response, next.next);
-      expect(nextSpy.calledWith({ statusCode: 422, message: error })).to.be.true;
-    }); 
-  }) */
 })

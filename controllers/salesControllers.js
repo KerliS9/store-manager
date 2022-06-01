@@ -12,11 +12,12 @@ const getSaleById = async (req, res) => {
   return res.status(200).json(sale);
 };
 
-const addNewSale = async (req, res, next) => {
-  const { statusCode, message, data } = await SalesServices.addNewSale(req.body);
-  if (message) {
+const addNewSale = async (req, res, _next) => {
+  const { statusCode, data } = await SalesServices.addNewSale(req.body);
+  // console.log('controllers', statusCode, message, data);
+  /* if (message) {
     return next({ statusCode, message });
-  }
+  } */
   return res.status(statusCode).json(data);
 };
 
