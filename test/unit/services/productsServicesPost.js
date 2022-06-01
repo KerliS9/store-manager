@@ -56,7 +56,7 @@ describe('Check Service Post: insert product on database', () => {
     it('should return an object with the keys statusCode and message', async () => {
       const response = await ProductsServices.addNewProduct(productPayload);
       // console.log('produto já existe', response);
-      expect(response).to.include.all.keys('statusCode', 'message');;
+      expect(response).to.include.all.keys('statusCode', 'message');
     })
   })
 })
