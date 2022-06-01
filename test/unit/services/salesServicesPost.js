@@ -21,13 +21,9 @@ describe('Check Sale Service Post: insert sale on database', () => {
       expect(id).to.be.a('number');
     })
 
-    it('should be an object', async () => {
+    it('should be an array', async () => {
       const {data: { itemsSold }} = await SalesServices.addNewSale(salePayloadPost);
-      /* await Promise.all(sale.map(({ productId, quantity }) => (
-        insertProductsSold.push(SalesModels.addProductSold({ id, productId, quantity }))
-        ))); */
-      // console.log('teste service', itemsSold[0]);
-      expect(itemsSold[0]).to.be.an('object');
+      expect(itemsSold).to.be.an('array');
     });
     it('the object should have the keys id, itemsSold', async () => {
       const { data } = await SalesServices.addNewSale(salePayloadPost);

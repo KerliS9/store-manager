@@ -38,7 +38,7 @@ describe('Check Services Sales Delete: delete sale from database', () => {
       SalesModels.deleteSaleById.restore();
     });
     it('should be an empty', async () => {
-      const response = await SalesService.getSaleById(1);
+      const response = await SalesModels.getSaleById(1);
       console.log('teste service', response);
       expect(response).to.be.empty;
     });
