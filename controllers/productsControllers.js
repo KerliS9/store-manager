@@ -46,6 +46,7 @@ const updateProductById = async (req, res, next) => {
 const deleteProductById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message } = await ProductsServices.deleteProductById({ id });
+  // console.log('controllers', statusCode, message);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).send();
 };

@@ -8,7 +8,7 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   const product = await ProductsModels.getProductById(id);
-  console.log('service', product);
+  // console.log('service', product);
   // if (!product) return null;
   if (!product) return ({ statusCode: 404, message: 'Product not found' });
   // return product;
@@ -37,7 +37,7 @@ const updateProductById = async ({ id, name, quantity }) => {
 
 const deleteProductById = async ({ id }) => {
   const productExistsOnDB = await ProductsModels.getProductById(id);
-  console.log('camada service exist:', productExistsOnDB);
+  // console.log('camada service exist:', productExistsOnDB);
   if (!productExistsOnDB) return ({ statusCode: 404, message: 'Product not found' });
   await ProductsModels.deleteProductById({ id });
   return { statusCode: 204 };

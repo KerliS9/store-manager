@@ -41,7 +41,7 @@ describe('Check Services: get product by id from database', () => {
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.getProductById(1);
-      console.log('teste product ', response);
+      // console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })

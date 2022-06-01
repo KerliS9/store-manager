@@ -42,7 +42,7 @@ const updateSaleById = async ({ id }, sale) => {
     
 const deleteSaleById = async ({ id }) => {
   const saleExistOnDB = await SalesModels.getSaleById(id);
-  console.log('service venda existe', saleExistOnDB);
+  // console.log('service venda existe', saleExistOnDB);
   if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
   await SalesModels.deleteSaleById({ id });
   return { statusCode: 204 };
