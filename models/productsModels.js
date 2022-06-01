@@ -32,14 +32,14 @@ const updateProductById = async ({ id, name, quantity }) => {
   // console.log('camada model params:', id);
   const query = 'UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;';
   await connection.execute(query, [name, quantity, id]);
-  console.log('camada model', { id, name, quantity });
+  // console.log('camada model', { id, name, quantity });
   return { id, name, quantity };
 };
 
 const deleteProductById = async ({ id }) => {
   const query = 'DELETE FROM StoreManager.products WHERE id = ?;';
   await connection.execute(query, [id]);
-  return {};
+  return [];
 };
 
 module.exports = {
