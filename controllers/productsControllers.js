@@ -8,7 +8,7 @@ const getAllProducts = async (_req, res) => {
 const getProductById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message, product } = await ProductsServices.getProductById(id);
-  console.log('controller product', product);
+  // console.log('controller product', product);
   if (message) {
     return next({ statusCode, message });
   }

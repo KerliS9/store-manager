@@ -9,7 +9,7 @@ const getProductById = async (id) => {
   const query = 'SELECT * FROM StoreManager.products WHERE id = ?;';
   const [product] = await connection.execute(query, [id]);
   if (product.length === 0) return [];
-  console.log('model', product[0]);
+  // console.log('model', product[0]);
   return product[0];
 };
 
@@ -32,7 +32,7 @@ const updateProductById = async ({ id, name, quantity }) => {
   // console.log('camada model params:', id);
   const query = 'UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;';
   await connection.execute(query, [name, quantity, id]);
-  // console.log('camada model', { id, name, quantity });
+  console.log('camada model', { id, name, quantity });
   return { id, name, quantity };
 };
 
