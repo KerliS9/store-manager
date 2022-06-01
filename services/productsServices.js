@@ -2,12 +2,13 @@ const ProductsModels = require('../models/productsModels');
 
 const getAllProducts = async () => {
   const [products] = await ProductsModels.getAllProducts();
+  // console.log('service', products);
   return products;
 };
 
 const getProductById = async (id) => {
   const product = await ProductsModels.getProductById(id);
-  // console.log('service', product);
+  console.log('service', product);
   // if (!product) return null;
   if (!product) return ({ statusCode: 404, message: 'Product not found' });
   // return product;

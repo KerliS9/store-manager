@@ -32,14 +32,16 @@ describe('Check Services: get product by id from database', () => {
 
   describe('when there is no product in the database', () => {
     before(() => {
-      sinon.stub(connection, 'execute').resolves([[]]);
+      // sinon.stub(ProductsModels, 'getProductById').resolves([[]]);
+      sinon.stub(ProductsServices, 'getProductById').resolves({ statusCode: 404, message: 'Product not found' })
     });
     after(() => {
-      connection.execute.restore();
+      // ProductsModels.getProductById.restore();
+      ProductsServices.getProductById.restore();
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.getProductById(1);
-      // console.log('teste product ', response);
+      console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })

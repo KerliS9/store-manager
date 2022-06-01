@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const connection = require('../../../db/connection');
+// const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const SalesService = require('../../../services/salesServices');
 const { salesById } = require('../../../const/mockForSales');
@@ -30,21 +30,21 @@ describe('Check Services Sales Delete: delete sale from database', () => {
 
   describe('when there is no sale in the database', () => {
     before(() => {
-      sinon.stub(SalesModels, 'getSaleById').resolves({});
-      sinon.stub(SalesModels, 'deleteSaleById').resolves({ statusCode: 404, message: 'Sale not found' });
+      sinon.stub(SalesModels, 'getSaleById').resolves([]);
+      sinon.stub(SalesService, 'deleteSaleById').resolves({ statusCode: 404, message: 'Sale not found' });
     });
     after(() => {
       SalesModels.getSaleById.restore();
-      SalesModels.deleteSaleById.restore();
+      SalesService.deleteSaleById.restore();
     });
     it('should be an empty', async () => {
       const response = await SalesModels.getSaleById(1);
-      console.log('teste service', response);
+      // console.log('teste service', response);
       expect(response).to.be.empty;
     });
     it('should return the keys statusCode and message', async () => {
       const response = await SalesService.deleteSaleById(1);
-      console.log('teste product ', response);
+      // console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');
     })
   })

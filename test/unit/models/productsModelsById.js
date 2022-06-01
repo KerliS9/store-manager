@@ -35,9 +35,9 @@ describe('Check Models: get product by id from database', () => {
     after(() => {
       connection.execute.restore();
     })
-    it('should return false', async () => {
+    it('should return empty', async () => {
       const response = await ProductsModels.getProductById(1);
-      expect(response).to.be.false;
+      expect(response).to.be.empty;
     })
   })
 })

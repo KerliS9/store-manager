@@ -30,8 +30,8 @@ describe('Check Services Sales Delete: delete sale from database', () => {
 
   describe('when there is no product in the database', () => {
     before(() => {
-      sinon.stub(ProductsModels, 'getProductById').resolves({});
-      sinon.stub(ProductsModels, 'deleteProductById').resolves({ statusCode: 404, message: 'Product not found' });
+      sinon.stub(ProductsModels, 'getProductById').resolves([]);
+      sinon.stub(ProductsServices, 'deleteProductById').resolves({ statusCode: 404, message: 'Product not found' });
     });
     after(() => {
       ProductsModels.getProductById.restore();
@@ -39,12 +39,12 @@ describe('Check Services Sales Delete: delete sale from database', () => {
     });
     it('should be an empty', async () => {
       const response = await ProductsModels.getProductById(1);
-      console.log('teste service', response);
+      // console.log('teste service', response);
       expect(response).to.be.empty;
     });
     it('should return the keys statusCode and message', async () => {
       const response = await ProductsServices.deleteProductById(1);
-      console.log('teste product ', response);
+      // console.log('teste product ', response);
       expect(response).to.include.all.keys('statusCode', 'message');
     })
   })
