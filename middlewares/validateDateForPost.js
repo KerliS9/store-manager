@@ -46,8 +46,8 @@ const validateSale = (req, _res, next) => {
   if (error) {
     next({
       statusCode: checkTypeDetails(error),
-      message: error.details[0].message.replace(/\[\d\]./, ''),
-      // message: error.details.map((e) => e.message.replace(/\[\d\]./, ''),
+      // message: error.details[0].message.replace(/\[\d\]./, ''),
+      message: error.details.map((e) => e.message),
     });
   }
   next();
