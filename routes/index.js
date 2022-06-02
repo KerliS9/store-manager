@@ -11,13 +11,13 @@ const { validateProduct, validateSale } = require('../middlewares/validateDateFo
 productsRoutes.get('/', ProductsControllers.getAllProducts);
 productsRoutes.get('/:id', ProductsControllers.getProductById);
 productsRoutes.post('/', validateProduct, ProductsControllers.addNewProduct);
-productsRoutes.put('/:id', ProductsControllers.updateProductById);
+productsRoutes.put('/:id', validateProduct, ProductsControllers.updateProductById);
 productsRoutes.delete('/:id', ProductsControllers.deleteProductById);
 
 salesRoutes.get('/', SalesControllers.getAllSales);
 salesRoutes.get('/:id', SalesControllers.getSaleById);
 salesRoutes.post('/', validateSale, SalesControllers.addNewSale);
-salesRoutes.put('/:id', SalesControllers.updateSaleById);
+salesRoutes.put('/:id', validateSale, SalesControllers.updateSaleById);
 salesRoutes.delete('/:id', SalesControllers.deleteSaleById);
 
 module.exports = {
