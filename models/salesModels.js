@@ -42,7 +42,7 @@ const updateSaleById = async ({ saleId: id, productId, quantity }) => {
   return { id, productId, quantity };
 };
 
-const deleteSaleById = async ({ id }) => {
+const deleteSaleById = async ({ saleId: id }) => {
   const query = 'DELETE FROM StoreManager.sales_products WHERE sale_id = ?;';
   await connection.execute(query, [id]);
   return {};

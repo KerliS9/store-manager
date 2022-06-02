@@ -70,21 +70,18 @@ const updateSaleById = async ({ id: saleId }, productsSale) => {
       } };
     };
     
-const deleteSaleById = async ({ id }) => {
-  console.log('pa', id);
-    const saleById = await SalesModels.getSaleById(id);
-    console.log('saleById', saleById);
-    /* const quantity = productDetails.quantity - s.quantity;
-    const { id, name } = productDetails;
-    if (quantity < 0) return ({ statusCode: 422, message: 'Such amount is not permitted to sell' });
-      await ProductsModels.updateProductById({ 
-      id, name, quantity });
-    // console.log('saldoAtualizado', saldoAtualizado);
-    return productDetails;
-  })); */
-  const saleExistOnDB = await SalesModels.getSaleById(id);
+const deleteSaleById = async ({ id: saleId }) => {
+  const saleExistOnDB = await SalesModels.getSaleById(saleId);
   if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
-  await SalesModels.deleteSaleById({ id });
+  // await SalesModels.getSaleById(saleId);
+  
+  await Promise.all(saleExistOnDB.map(async (p) => {
+    const { name, id, quantity: qtd } = await ProductsModels.getProductById(p.productId);
+    const quantity = qtd + p.quantity;
+    await ProductsModels.updateProductById({ 
+    id, name, quantity });
+  }));
+  await SalesModels.deleteSaleById({ saleId });
   return { statusCode: 204 };
 };
 
