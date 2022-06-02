@@ -33,7 +33,7 @@ const validateProduct = (req, _res, next) => {
 // 422 { "message": "\"quantity\" must be greater than or equal to 1" } - number.min
 
 const validateSale = (req, _res, next) => {
-  const sale = Joi.array().items({
+    const sale = Joi.array().items({
       productId: Joi.number().required(),
       quantity: Joi.number().integer().min(1).required(),
     }).messages({
@@ -46,8 +46,8 @@ const validateSale = (req, _res, next) => {
   if (error) {
     next({
       statusCode: checkTypeDetails(error),
-      // message: error.details[0].message.replace(/\[\d\]./, ''),
-      message: error.details.map((e) => e.message.replace(/\[\d\]./, '')),
+      message: error.details[0].message.replace(/\[\d\]./, ''),
+      // message: error.details.map((e) => e.message.replace(/\[\d\]./, '')),
     });
   }
   next();
