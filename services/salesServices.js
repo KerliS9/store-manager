@@ -38,19 +38,15 @@ const addNewSale = async (sale) => {
   const update = await Promise.all(sale.map(async (s) => {
     const productDetails = await ProductsModels.getProductById(s.productId);
     const quantity = productDetails.quantity - s.quantity;
-    console.log('quantity', quantity);
     const { id, name } = productDetails;
     if (quantity < 0) return ({ statusCode: 422 });
       await ProductsModels.updateProductById({ 
       id, name, quantity });
-    // console.log('saldoAtualizado', saldoAtualizado);
     return productDetails;
   }));
-  // const update = await updateDBOnSale(sale);
   if (update.find((u) => u.statusCode)) {
     return ({ statusCode: 422, message: 'Such amount is not permitted to sell' });
   }
-  // console.log('test', update);
   await Promise.all(sale.map(({ productId, quantity }) => (
     SalesModels.addProductSold({ saleId, productId, quantity })
   )));

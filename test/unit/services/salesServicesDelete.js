@@ -1,11 +1,10 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-// const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const SalesService = require('../../../services/salesServices');
 const { salesById } = require('../../../const/mockForSales');
 
-describe.only('Check Services Sales Delete: delete sale from database', () => {
+describe('Check Services Sales Delete: delete sale from database', () => {
   describe('when there is a sale that match with the id in the database', () => {
     before(() => {
       sinon.stub(SalesModels, 'getSaleById').resolves(salesById);
@@ -22,6 +21,7 @@ describe.only('Check Services Sales Delete: delete sale from database', () => {
     });
     it('the object should have the keys statusCode', async () => {
       const response = await SalesService.deleteSaleById(1);
+      console.log('service test', response);
       expect(response).to.include.all.keys('statusCode');
     });
   })
