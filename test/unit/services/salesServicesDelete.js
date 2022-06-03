@@ -10,12 +10,12 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
   describe('when there is a sale that match with the id in the database', () => {
     before(() => {
       sinon.stub(SalesModels, 'getSaleById').resolves(salesById);
-      sinon.stub(SalesModels, 'deleteSaleById').resolves({ statusCode: 204 });
+      sinon.stub(SalesService, 'deleteSaleById').resolves({ statusCode: 204 });
       sinon.stub(ProductsModels, 'getProductById').resolves(productPayload);
     });
     after(() => {
       SalesModels.getSaleById.restore();
-      SalesModels.deleteSaleById.restore();
+      SalesService.deleteSaleById.restore();
       ProductsModels.getProductById.restore();
     });
 

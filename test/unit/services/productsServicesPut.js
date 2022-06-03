@@ -1,20 +1,21 @@
-const sinon = require('sinon');
+/* const sinon = require('sinon');
 const { expect } = require('chai');
 const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products, productPayload } = require('../../../const/mockForTest');
 
-describe('Check Products Services PUT: update product by id from database', () => {
+describe.only('Check Products Services PUT: update product by id from database', () => {
   describe('when there is a product that match with the id in the database', () => {
     before(() => {
-      sinon.stub(ProductsModels, 'getProductById').resolves(products);
+      sinon.stub(ProductsModels, 'updateProductById').resolves({ productUpdated: products[0][0] });
     });
     after(() => {
-      ProductsModels.getProductById.restore();
+      ProductsModels.updateProductById.restore();
     });
 
     it('should be an object', async () => {
       const { productUpdated } = await ProductsServices.updateProductById(productPayload);
+      console.log('test', productPayload);
       expect(productUpdated).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
@@ -39,4 +40,4 @@ describe('Check Products Services PUT: update product by id from database', () =
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })
-})
+}) */
