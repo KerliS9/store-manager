@@ -8,8 +8,8 @@ const getAllSales = async () => {
 
 const getSaleById = async (id) => {
   const sale = await SalesModels.getSaleById(id);
-  if (!sale) return null;
-  return sale;
+  if (sale.length === 0) return ({ statusCode: 404, message: 'Sale not found' });
+  return { statusCode: 200, sale };
 };
 
 const addNewSale = async (sale) => {

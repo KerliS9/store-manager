@@ -5,11 +5,11 @@ const getAllSales = async (_req, res) => {
   return res.status(200).json(sales);
 };
 
-const getSaleById = async (req, res) => {
+const getSaleById = async (req, res, next) => {
   const { id } = req.params;
-  const sale = await SalesServices.getSaleById(id);
-  if (sale === null) return res.status(404).json({ message: 'Sale not found' });
-  return res.status(200).json(sale);
+  const { statusCode, message, sale } = await SalesServices.getSaleById(id);
+  if (message) return next({ statusCode, message });
+  return res.status(statusCode).json(sale);
 };
 
 const addNewSale = async (req, res, next) => {
@@ -27,6 +27,7 @@ const updateSaleById = async (req, res, next) => {
 const deleteSaleById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message } = await SalesServices.deleteSaleById({ id });
+  console.log('controllers', statusCode, message);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).send();
 };

@@ -14,7 +14,7 @@ describe('Check Sales Controllers GET: where function is getSaleById', () => {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
 
-      sinon.stub(SalesServices, 'getSaleById').resolves(sales);
+      sinon.stub(SalesServices, 'getSaleById').resolves({ statusCode:200, sale: sales[0][0] });
     });
     after(() => {
       SalesServices.getSaleById.restore();
@@ -25,31 +25,28 @@ describe('Check Sales Controllers GET: where function is getSaleById', () => {
     });
     it('the method "json" should return an object', async () => {
       await SalesControllers.getSaleById(request, response);
-      expect(response.json.calledWith(sales)).to.be.true;
+      expect(response.json.calledWith(sales[0][0])).to.be.true;
     });
   });
-  /* describe('when there is no sales in the database', () => {
+  describe('when there is no sales in the database', () => {
     const response = {};
     const request = {};
+    const next = { next: (args) => {} };
+    const nextSpy = sinon.spy(next, 'next');
 
     before(() => {
       request.params = { id: 1 };
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
-      next = sinon.stub().returns()
 
-      sinon.stub(SalesServices, 'getSaleById').resolves([]);
+      sinon.stub(SalesServices, 'getSaleById').resolves({ statusCode: 404, message: 'Sale not found' });
     });
     after(() => {
       SalesServices.getSaleById.restore();
     });
-    it('the method "status" is called with code 404', async () => {
-      await SalesControllers.getSaleById(request, response, next);
-      expect(next.status.calledWith(404)).to.be.true;
+    it('the method "status" is called with code 404 and method "json" should return an message', async () => {
+      await SalesControllers.getSaleById(request, response, next.next);
+      expect(nextSpy.calledWith({ statusCode: 404, message: 'Sale not found' })).to.be.true;
     });
-    it('the method "json" should return an message', async () => {
-      await SalesControllers.getSaleById(request, response);
-      expect(response.json.calledWith({ message: 'Sale not found' })).to.be.true;
-    });
-  }) */
+  })
 })

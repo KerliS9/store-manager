@@ -34,9 +34,9 @@ describe('Check Sales Models GET: get sale by id from database', () => {
     after(() => {
       connection.execute.restore();
     })
-    it('should return false', async () => {
+    it('should return empty', async () => {
       const response = await SalesModels.getSaleById(1);
-      expect(response).to.be.false;
+      expect(response).to.be.empty;
     })
   })
 })

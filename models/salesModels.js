@@ -18,7 +18,6 @@ FROM StoreManager.sales_products AS SP
     WHERE SP.sale_id = ?
     ORDER BY SP.sale_id, SP.product_id;`;
   const [sale] = await connection.execute(query, [id]);
-  if (sale.length === 0) return false;
   return sale;
 };
 
@@ -43,6 +42,7 @@ const updateSaleById = async ({ saleId: id, productId, quantity }) => {
 };
 
 const deleteSaleById = async ({ saleId: id }) => {
+  console.log('model', id);
   const query = 'DELETE FROM StoreManager.sales_products WHERE sale_id = ?;';
   await connection.execute(query, [id]);
   return {};
