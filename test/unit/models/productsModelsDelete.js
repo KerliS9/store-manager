@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const connection = require('../../../db/connection');
 const ProductsModels = require('../../../models/productsModels');
 
-describe('Check Products Models Delete: delete product from database', () => {
+describe('Check Products Models DELETE: delete product from database', () => {
   describe('when deleting happens successfully', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves([]);

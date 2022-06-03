@@ -4,7 +4,7 @@ const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const { salePayload } = require('../../../const/mockForSales');
 
-describe('Check SalesModels Put: update sale by id in database', () => {
+describe('Check Sales Models PUT: update sale by id in database', () => {
   describe('when there is a sale that match with the id in the database', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves(salePayload);

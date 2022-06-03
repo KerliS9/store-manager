@@ -4,7 +4,7 @@ const SalesServices = require('../../../services/salesServices');
 const SalesControllers = require('../../../controllers/salesControllers');
 const { salePayloadPost, saleResult } = require('../../../const/mockForSales');
 
-describe('Check controllers: where function is addNewProduct', () => {
+describe('Check Sales Controllers POST: where function is addNewProduct', () => {
   describe('when there is a product to add to the database', () => {
     const response = {};
     const request = {};

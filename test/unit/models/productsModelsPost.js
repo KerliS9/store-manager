@@ -6,7 +6,7 @@ const { productPayload } = require('../../../const/mockForTest');
 
 const { name } = productPayload;
 
-describe('Check Models Post: insert product on database', () => {
+describe('Check Products Models POST: insert product on database', () => {
   describe('when the insertion happens successfully', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves(name);

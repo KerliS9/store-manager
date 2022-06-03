@@ -2,9 +2,8 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const ProductsServices = require('../../../services/productsServices');
 const ProductsControllers = require('../../../controllers/productsControllers');
-const { products } = require('../../../const/mockForTest');
 
-describe('Check controllers Delete Product: when the method is delete a product', () => {
+describe('Check ProductsControllers DELETE: when the method is delete a product', () => {
   describe('when there is a product in the database', () => {
     const response = {};
     const request = {};

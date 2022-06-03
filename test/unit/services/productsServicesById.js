@@ -5,7 +5,7 @@ const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products } = require('../../../const/mockForTest');
 
-describe('Check Services: get product by id from database', () => {
+describe('Check Products Services GET: get product by id from database', () => {
   describe('when there is a product that match with the id in the database', () => {
     before(() => {
       sinon.stub(ProductsModels, 'getProductById').resolves(products);

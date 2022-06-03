@@ -4,7 +4,7 @@ const SalesServices = require('../../../services/salesServices');
 const SalesControllers = require('../../../controllers/salesControllers');
 const { sales } = require('../../../const/mockForSales');
 
-describe('Check controllers: where function is getSaleById', () => {
+describe('Check Sales Controllers GET: where function is getSaleById', () => {
   describe('when there is a sale in the database', () => {
     const response = {};
     const request = {};

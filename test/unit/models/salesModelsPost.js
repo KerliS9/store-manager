@@ -4,7 +4,7 @@ const connection = require('../../../db/connection');
 const SalesModels = require('../../../models/salesModels');
 const { salePayload, saleResult } = require('../../../const/mockForSales');
 
-describe('Check Sales Models Post: insert product on database', () => {
+describe('Check Sales Models POST: insert product on database', () => {
   describe('when the insertion happens successfully', () => {
     before(() => {
       const callbackExecute = sinon.stub(connection, 'execute');

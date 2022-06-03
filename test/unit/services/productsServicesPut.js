@@ -1,11 +1,10 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const connection = require('../../../db/connection');
 const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products, productPayload } = require('../../../const/mockForTest');
 
-describe('Check Services Put: update product by id from database', () => {
+describe('Check Products Services PUT: update product by id from database', () => {
   describe('when there is a product that match with the id in the database', () => {
     before(() => {
       sinon.stub(ProductsModels, 'getProductById').resolves(products);

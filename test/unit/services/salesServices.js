@@ -4,7 +4,7 @@ const SalesModels = require('../../../models/salesModels');
 const SalesServices = require('../../../services/salesServices');
 const { sales } = require('../../../const/mockForSales');
 
-describe('Check Services Sales: get all sales from database', () => {
+describe('Check Sales Services GET: get all sales from database', () => {
   describe('when there are sales in the database', () => {
     before(() => {
       sinon.stub(SalesModels, 'getAllSales').resolves(sales);

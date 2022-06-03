@@ -4,7 +4,7 @@ const SalesServices = require('../../../services/salesServices');
 const SalesControllers = require('../../../controllers/salesControllers');
 // const { sales } = require('../../../const/mockForTest');
 
-describe('Check controllers Delete Sale: when the method is delete a sale', () => {
+describe('Check Sales Controllers DELETE: when the method is delete a sale', () => {
   describe('when there is a sale in the database', () => {
     const response = {};
     const request = {};

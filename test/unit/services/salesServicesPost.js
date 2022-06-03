@@ -7,7 +7,7 @@ const SalesServices = require('../../../services/salesServices');
 const { salePayloadPost, saleResult } = require('../../../const/mockForSales');
 const { productPayload } = require('../../../const/mockForTest');
 
-describe('Check Sale Service Post: insert sale on database', () => {
+describe('Check Sales Services POST: insert sale on database', () => {
   describe('when the insertion happens successfully', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);

@@ -1,13 +1,12 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-// const connection = require('../../../db/connection');
 const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { productPayload } = require('../../../const/mockForTest');
 
 const { name } = productPayload;
 
-describe('Check Service Post: insert product on database', () => {
+describe('Check Products Services POST: insert product on database', () => {
   describe('when the insertion happens successfully', () => {
     before(() => {
       sinon.stub(ProductsModels, 'getProductByName').resolves(undefined);

@@ -4,7 +4,7 @@ const connection = require('../../../db/connection');
 const ProductsModels = require('../../../models/productsModels');
 const { products } = require('../../../const/mockForTest');
 
-describe('Check Models: get all products from database', () => {
+describe('Check Products Models GET: get all products from database', () => {
   describe('when there are products in the database', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves(products);

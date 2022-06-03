@@ -5,7 +5,7 @@ const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { productPayload } = require('../../../const/mockForTest');
 
-describe('Check Services Sales Delete: delete sale from database', () => {
+describe('Check Products Services DELETE: delete sale from database', () => {
   describe('when there is a sale that match with the id in the database', () => {
     before(() => {
       sinon.stub(ProductsModels, 'getProductById').resolves(productPayload);

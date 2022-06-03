@@ -4,7 +4,7 @@ const ProductsServices = require('../../../services/productsServices');
 const ProductsControllers = require('../../../controllers/productsControllers');
 const { products } = require('../../../const/mockForTest');
 
-describe('Check controllers: where function is getAllProducts', () => {
+describe('Check Products Controllers GET: where function is getAllProducts', () => {
   describe('when there are products in the database', () => {
     const response = {};
     const request = {};
