@@ -27,7 +27,6 @@ const updateSaleById = async (req, res, next) => {
 const deleteSaleById = async (req, res, next) => {
   const { id } = req.params;
   const { statusCode, message } = await SalesServices.deleteSaleById({ id });
-  console.log('controllers', statusCode, message);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).send();
 };

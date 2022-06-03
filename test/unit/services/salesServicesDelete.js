@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const SalesModels = require('../../../models/salesModels');
 const ProductsModels = require('../../../models/productsModels');
 const SalesService = require('../../../services/salesServices');
-const { salesById, salePayload } = require('../../../const/mockForSales');
+const { salesById } = require('../../../const/mockForSales');
 const { productPayload } = require('../../../const/mockForTest');
 
 describe('Check Sales Services DELETE: delete sale from database', () => {
@@ -12,11 +12,13 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
       sinon.stub(SalesModels, 'getSaleById').resolves(salesById);
       sinon.stub(ProductsModels, 'getProductById').resolves(productPayload);
       sinon.stub(ProductsModels, 'updateProductById').resolves(productPayload);
+      sinon.stub(SalesModels, 'deleteSaleById').resolves({});
     });
     after(() => {
       SalesModels.getSaleById.restore();
       ProductsModels.getProductById.restore();
       ProductsModels.updateProductById.restore();
+      SalesModels.deleteSaleById.restore();
     });
 
     it('should be an array', async () => {
@@ -31,11 +33,10 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
       const response = await ProductsModels.updateProductById(productPayload);
       expect(response).to.include.all.keys('id', 'name', 'quantity');
     });
-    /* it('the object should have the keys statusCode', async () => {
+    it('the object should have the keys statusCode', async () => {
       const response = await SalesService.deleteSaleById(1);
-      console.log('test', response);
       expect(response).to.include.all.keys('statusCode');
-    }); */
+    });
   })
 
   describe('when there is no sale in the database', () => {
