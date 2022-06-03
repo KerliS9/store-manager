@@ -1,4 +1,4 @@
-const sinon = require('sinon');
+/* const sinon = require('sinon');
 const { expect } = require('chai');
 const ProductsServices = require('../../../services/productsServices');
 const ProductsControllers = require('../../../controllers/productsControllers');
@@ -51,4 +51,4 @@ describe('Check Product Controllers PUT: where function is updateProductById', (
       expect(nextSpy.calledWith({ statusCode: 404, message: 'Product not found' })).to.be.true;
     });
   })
-})
+}) */
