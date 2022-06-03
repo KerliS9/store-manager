@@ -22,10 +22,8 @@ const addNewProduct = async ({ name, quantity }) => {
 
 const updateProductById = async ({ id, name, quantity }) => {
   const productExistsOnDB = await ProductsModels.getProductById(id);
-  // console.log('camada service exist:', productExistsOnDB);
   if (productExistsOnDB.length === 0) return ({ statusCode: 404, message: 'Product not found' });
   const productUpdated = await ProductsModels.updateProductById({ id, name, quantity });
-  // console.log('camada service update:', productUpdated);
   return { statusCode: 200, productUpdated };
 };
 

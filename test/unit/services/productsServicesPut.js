@@ -1,21 +1,23 @@
-/* const sinon = require('sinon');
+const sinon = require('sinon');
 const { expect } = require('chai');
 const ProductsModels = require('../../../models/productsModels');
 const ProductsServices = require('../../../services/productsServices');
 const { products, productPayload } = require('../../../const/mockForTest');
 
-describe.only('Check Products Services PUT: update product by id from database', () => {
+describe('Check Products Services PUT: update product by id from database', () => {
   describe('when there is a product that match with the id in the database', () => {
     before(() => {
-      sinon.stub(ProductsModels, 'updateProductById').resolves({ productUpdated: products[0][0] });
+      sinon.stub(ProductsModels, 'getProductById').resolves(productPayload);
+      sinon.stub(ProductsModels, 'updateProductById').resolves(productPayload);
     });
     after(() => {
+      ProductsModels.getProductById.restore();
       ProductsModels.updateProductById.restore();
     });
 
     it('should be an object', async () => {
       const { productUpdated } = await ProductsServices.updateProductById(productPayload);
-      console.log('test', productPayload);
+      console.log('test', productUpdated);
       expect(productUpdated).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
@@ -37,7 +39,8 @@ describe.only('Check Products Services PUT: update product by id from database',
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.updateProductById(productPayload);
+      console.log('service test', response);
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })
-}) */
+})
