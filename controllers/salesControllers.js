@@ -20,7 +20,6 @@ const addNewSale = async (req, res, next) => {
 
 const updateSaleById = async (req, res, next) => {
   const { statusCode, message, data } = await SalesServices.updateSaleById(req.params, req.body);
-  // console.log('controllers', message);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).json(data);
 };

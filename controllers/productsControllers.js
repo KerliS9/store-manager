@@ -31,7 +31,6 @@ const updateProductById = async (req, res, next) => {
   const { statusCode, message, productUpdated } = await ProductsServices.updateProductById({
     id, name, quantity,
   });
-  // console.log('camada controllers name, quantity: ', message, productUpdated);
   if (message) return next({ statusCode, message });
   return res.status(statusCode).json(productUpdated);
 };

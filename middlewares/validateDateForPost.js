@@ -1,7 +1,6 @@
 const Joi = require('joi');
 
 const checkTypeDetails = ({ details }) => {
-  // console.log('details', details[0]);
   const { type } = details[0];
   if (type === 'any.required') return 400;
   return 422;

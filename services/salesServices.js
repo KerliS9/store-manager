@@ -12,27 +12,6 @@ const getSaleById = async (id) => {
   return sale;
 };
 
-/* const updateDBOnSale = async (sale) => {
-  const update = await Promise.all(sale.map(async (s) => {
-    const productDetails = await ProductsModels.getProductById(s.productId);
-    const quantity = productDetails.quantity - s.quantity;
-    console.log('quantity', quantity);
-    const { id, name } = productDetails;
-    if (quantity < 0) return ({ statusCode: 422 });
-    // {
-      throw new Error({ statusCode: 422, message: 'Such amount is not permitted to sell' });
-    } 
-      await ProductsModels.updateProductById({ 
-      id, name, quantity });
-    // console.log('saldoAtualizado', saldoAtualizado);
-    return productDetails;
-  }));
-  // console.log('test function', update);
-  if (update.find((u) => u.statusCode)) {
-    return ({ statusCode: 422, message: 'Such amount is not permitted to sell' });
-  }
-  return update;
-}; */
 const addNewSale = async (sale) => {
   const { id: saleId } = await SalesModels.addNewSale();
   const update = await Promise.all(sale.map(async (s) => {
@@ -54,10 +33,8 @@ const addNewSale = async (sale) => {
 };
 
 const updateSaleById = async ({ id: saleId }, productsSale) => {
-  // await updateDBOnSale(productsSale);
   const saleUpdated = await Promise.all(productsSale.map(({ productId, quantity }) => (
     SalesModels.updateSaleById({ saleId, productId, quantity }))));
-    // console.log('service', saleUpdated);
     return {
       statusCode: 200,
       data: {

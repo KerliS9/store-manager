@@ -1,8 +1,8 @@
-/* const sinon = require('sinon');
+const sinon = require('sinon');
 const { expect } = require('chai');
 const ProductsServices = require('../../../services/productsServices');
 const ProductsControllers = require('../../../controllers/productsControllers');
-const { products, productPayload } = require('../../../const/mockForTest');
+const { productPayload } = require('../../../const/mockForTest');
 
 describe('Check Product Controllers PUT: where function is updateProductById', () => {
   describe('when there is a product in the database', () => {
@@ -15,7 +15,7 @@ describe('Check Product Controllers PUT: where function is updateProductById', (
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns(response);
 
-      sinon.stub(ProductsServices, 'updateProductById').resolves({ statusCode: 200, product: products[0][0] });
+      sinon.stub(ProductsServices, 'updateProductById').resolves({ statusCode: 200, productUpdated: productPayload });
     });
     after(() => {
       ProductsServices.updateProductById.restore();
@@ -26,8 +26,7 @@ describe('Check Product Controllers PUT: where function is updateProductById', (
     });
     it('the method "json" should return an object', async () => {
       await ProductsControllers.updateProductById(request, response);
-      // console.log('controllers test', products[0][0]);
-      expect(response.json.calledWith(products[0][0])).to.be.true;
+      expect(response.json.calledWith(productPayload)).to.be.true;
     });
   });
   describe('when there is no products in the database', () => {
@@ -38,6 +37,7 @@ describe('Check Product Controllers PUT: where function is updateProductById', (
 
     before(() => {
       request.params = { };
+      request.body = productPayload;
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns(response);
 
@@ -51,4 +51,4 @@ describe('Check Product Controllers PUT: where function is updateProductById', (
       expect(nextSpy.calledWith({ statusCode: 404, message: 'Product not found' })).to.be.true;
     });
   })
-}) */
+})

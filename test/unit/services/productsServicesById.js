@@ -30,10 +30,16 @@ describe('Check Products Services GET: get product by id from database', () => {
 
   describe('when there is no product in the database', () => {
     before(() => {
+      sinon.stub(ProductsModels, 'getProductById').resolves([])
       sinon.stub(ProductsServices, 'getProductById').resolves({ statusCode: 404, message: 'Product not found' })
     });
     after(() => {
       ProductsServices.getProductById.restore();
+      ProductsModels.getProductById.restore();
+    })
+    it('should return an empty array', async () => {
+      const response = await ProductsModels.getProductById(1);
+      expect(response).to.be.empty;
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.getProductById(1);

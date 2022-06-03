@@ -17,7 +17,6 @@ describe('Check Products Services PUT: update product by id from database', () =
 
     it('should be an object', async () => {
       const { productUpdated } = await ProductsServices.updateProductById(productPayload);
-      console.log('test', productUpdated);
       expect(productUpdated).to.be.an('object');
     });
     it('the object should have the keys id, name, quantity', async () => {
@@ -39,7 +38,6 @@ describe('Check Products Services PUT: update product by id from database', () =
     })
     it('should return an object with the keys statusCode and message ', async () => {
       const response = await ProductsServices.updateProductById(productPayload);
-      console.log('service test', response);
       expect(response).to.include.all.keys('statusCode', 'message');;
     })
   })
