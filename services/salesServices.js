@@ -27,7 +27,7 @@ const getSaleById = async (id) => {
     // console.log('saldoAtualizado', saldoAtualizado);
     return productDetails;
   }));
-  console.log('test function', update);
+  // console.log('test function', update);
   if (update.find((u) => u.statusCode)) {
     return ({ statusCode: 422, message: 'Such amount is not permitted to sell' });
   }
