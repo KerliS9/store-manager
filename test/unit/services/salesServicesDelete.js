@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const SalesModels = require('../../../models/salesModels');
 const ProductsModels = require('../../../models/productsModels');
 const SalesService = require('../../../services/salesServices');
-const { salesById } = require('../../../const/mockForSales');
+const { salesById, salePayload } = require('../../../const/mockForSales');
 const { productPayload } = require('../../../const/mockForTest');
 
 describe('Check Sales Services DELETE: delete sale from database', () => {
@@ -12,13 +12,11 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
       sinon.stub(SalesModels, 'getSaleById').resolves(salesById);
       sinon.stub(ProductsModels, 'getProductById').resolves(productPayload);
       sinon.stub(ProductsModels, 'updateProductById').resolves(productPayload);
-      sinon.stub(SalesService, 'deleteSaleById').resolves({ statusCode: 204 });
     });
     after(() => {
       SalesModels.getSaleById.restore();
       ProductsModels.getProductById.restore();
       ProductsModels.updateProductById.restore();
-      SalesService.deleteSaleById.restore();
     });
 
     it('should be an array', async () => {
@@ -34,7 +32,7 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
       expect(response).to.include.all.keys('id', 'name', 'quantity');
     });
     it('the object should have the keys statusCode', async () => {
-      const response = await SalesService.deleteSaleById(1);
+      const response = await SalesService.deleteSaleById(salePayload);
       expect(response).to.include.all.keys('statusCode');
     });
   })
@@ -42,11 +40,9 @@ describe('Check Sales Services DELETE: delete sale from database', () => {
   describe('when there is no sale in the database', () => {
     before(() => {
       sinon.stub(SalesModels, 'getSaleById').resolves([]);
-      sinon.stub(SalesService, 'deleteSaleById').resolves({ statusCode: 404, message: 'Sale not found' });
     });
     after(() => {
       SalesModels.getSaleById.restore();
-      SalesService.deleteSaleById.restore();
     });
     it('should be an empty', async () => {
       const response = await SalesModels.getSaleById(1);

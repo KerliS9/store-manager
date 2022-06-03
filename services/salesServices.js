@@ -45,8 +45,7 @@ const updateSaleById = async ({ id: saleId }, productsSale) => {
     
 const deleteSaleById = async ({ id: saleId }) => {
   const saleExistOnDB = await SalesModels.getSaleById(saleId);
-  if (!saleExistOnDB) return ({ statusCode: 404, message: 'Sale not found' });
-  
+  if (saleExistOnDB.length === 0) return ({ statusCode: 404, message: 'Sale not found' });  
   await Promise.all(saleExistOnDB.map(async (p) => {
     const { name, id, quantity: qtd } = await ProductsModels.getProductById(p.productId);
     const quantity = qtd + p.quantity;
