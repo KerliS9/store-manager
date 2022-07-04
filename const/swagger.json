@@ -13,7 +13,7 @@
     "/products": {
       "get": {
         "summary": "Get all products",
-        "description": "Get all products save on database",
+        "description": "Method used in this route to get all products",
         "responses": {
           "200": {
             "description": "Return a list of products",
@@ -28,13 +28,14 @@
         }
       },
       "post": {
-        "summary": "Add product to database",
-        "description": "Route to access, for add product to database",
+        "summary": "Add product",
+        "description": "Method used in this route to add a product",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "$ref": "#/components/schemas/ProductBody"
               }
             }
           }
@@ -59,7 +60,7 @@
     "/products/{id}": {
       "get": {
         "summary": "Find product by id",
-        "description": "Return product based on id",
+        "description": "Method used in this route to delete a product",
         "operationId": "getProductById",
         "responses": {
           "200": {
@@ -91,6 +92,7 @@
       },
       "put": {
         "summary": "Update product",
+        "description": "Method used in this route to update a product",
         "operationId": "updateProductById",
         "parameters": [
           {
@@ -99,7 +101,8 @@
             "description": "id of product that needs to be updated",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "object",
+              "$ref": "#/components/schemas/ProductBody"
             }
           }
         ],
@@ -140,6 +143,7 @@
       },
       "delete": {
         "summary": "Delete product",
+        "description": "Method used in this route to delete a product",
         "operationId": "deleteProductById",
         "parameters": [
           {
@@ -158,6 +162,35 @@
           },
           "404": {
             "description": "Product not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schema": {
+      "Product": {
+        "type": "array",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProductBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
           }
         }
       }
