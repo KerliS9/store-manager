@@ -26,3 +26,7 @@ Test:
 - Como desenvolver um CRUD
 
 - Cobertura de testes
+
+# Observação
+
+- Projeto individual desenvolvido durante o curso de desenvolvimento Web na Trybe.
