@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Store manager",
+    "description": "API para CRUD de produtos e vendas",
+    "contact": {
+      "email": "kerlischroeder9@gmail.com",
+      "linkedIn": "kerlischroeder"
+    },
+    "version": "1.0.0"
+  },
+  "path": {
+    "/products": {
+      "get": {
+        "summary": "Get all products",
+        "description": "Method used in this route to get all products",
+        "responses": {
+          "200": {
+            "description": "Return a list of products",
+            "content": {
+              "application/json" : {
+                "schema": {
+                  "type": "array of objects"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add product",
+        "description": "Method used in this route to add a product",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ProductBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "409": {
+            "description": "Product already exists"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema" : {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Find product by id",
+        "description": "Method used in this route to delete a product",
+        "operationId": "getProductById",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "404": {
+              "description": "Product not found"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of product to use",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update product",
+        "description": "Method used in this route to update a product",
+        "operationId": "updateProductById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of product that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/ProductBody"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Updated name of the product",
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "description": "Updated quantity of the product",
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete product",
+        "description": "Method used in this route to delete a product",
+        "operationId": "deleteProductById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of product that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schema": {
+      "Product": {
+        "type": "array",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProductBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

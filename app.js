@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJson = require('./const/swagger.json');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { productsRoutes, salesRoutes } = require('./routes');
 
@@ -13,6 +15,7 @@ app.get('/', (_request, response) => {
 
 app.use('/products', productsRoutes);
 app.use('/sales', salesRoutes);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 app.use(errorHandler);
 
