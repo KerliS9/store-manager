@@ -1,16 +1,28 @@
-# 🚧 README em construção 🚧
+## Projeto Store Manager
 
-<!-- Olá, Tryber!
+# Contexto
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+Desenvolvida a minha primeira API RESTful utilizando a arquitetura MSC (model-service-controller)!
 
-É essencial que você preencha esse documento por conta própria, ok?
+A API construída é um sistema de gerenciamento de vendas em que será possível criar, visualizar, deletar e atualizar produtos e vendas.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+Usando o banco MySQL para a gestão de dados.
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+# Tecnologias usadas
 
--->
+Back end:
+- Docker
+- MySQL
+- Princípios REST
+- Express
+- Joi
+
+Test:
+- Mocha
+- Sinon
+
+# Habilidades desenvolvidas
+
+- Como desenvolver um CRUD
+
+- Cobertura de testes
