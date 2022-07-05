@@ -60,7 +60,7 @@
     "/products/{id}": {
       "get": {
         "summary": "Find product by id",
-        "description": "Method used in this route to delete a product",
+        "description": "Method used in this route to get a specific a product",
         "operationId": "getProductById",
         "responses": {
           "200": {
@@ -165,16 +165,184 @@
           }
         }
       }
+    },
+    "/sales": {
+      "get": {
+        "summary": "Get all sales",
+        "description": "Method used in this route to get all sales",
+        "responses": {
+          "200": {
+            "description": "Return a list of sales",
+            "content": {
+              "application/json" : {
+                "schema": {
+                  "type": "array of objects"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add sale",
+        "description": "Method used in this route to add a sale",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "$ref": "#/components/schemas/SaleBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Such amount is not permitted to sell"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema" : {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "itemsSold": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sales/{id}": {
+      "get": {
+        "summary": "Find sale by id",
+        "description": "Method used in this route to get a specific sale",
+        "operationId": "getSaleById",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "404": {
+              "description": "Sale not found"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of sale to use",
+            "required": true,
+            "schema": {
+              "type": "array"
+            }
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update sale",
+        "description": "Method used in this route to update a sale",
+        "operationId": "updateSaleById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of sale that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/SaleBody"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "description": "Updated the productId",
+                    "type": "integer"
+                  },
+                  "quantity": {
+                    "description": "Updated quantity of product sold",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "saleId": {
+                      "type": "integer"
+                    },
+                    "itemUpdated": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete sale",
+        "description": "Method used in this route to delete a sale",
+        "operationId": "deleteSaleById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of sale that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      }
     }
   },
   "components": {
     "schema": {
-      "Product": {
-        "type": "array",
+      "ProductBody": {
+        "type": "object",
         "properties": {
-          "id": {
-            "type": "integer"
-          },
           "name": {
             "type": "string"
           },
@@ -183,11 +351,14 @@
           }
         }
       },
-      "ProductBody": {
-        "type": "object",
+      "SaleBody": {
+        "type": "array",
         "properties": {
-          "name": {
-            "type": "string"
+          "saleId": {
+            "type": "integer"
+          },
+          "productId": {
+            "type": "integer"
           },
           "quantity": {
             "type": "integer"
